@@ -7,9 +7,15 @@ class User(db.Model, UserMixin):
     __tablename__ = 'users'
 
     id = db.Column(db.Integer, primary_key=True)
+    firstName = db.Column(db.String(25), nullable=False)
+    lastName = db.Column(db.String(25), nullable=False)
+    profileImg = db.Column(db.String(500), nullable=False)
     username = db.Column(db.String(40), nullable=False, unique=True)
     email = db.Column(db.String(255), nullable=False, unique=True)
     hashed_password = db.Column(db.String(255), nullable=False)
+
+    routes = db.relatioship("Route", back_populates = 'user',cascade = 'all,delete')
+    workouts = db.relationship('Workout', back_populates = 'user', cascade = 'all,delete')
 
     @property
     def password(self):
@@ -26,5 +32,8 @@ class User(db.Model, UserMixin):
         return {
             'id': self.id,
             'username': self.username,
-            'email': self.email
+            'email': self.email,
+            'firstNamer': self.firstName,
+            'lastName': self.lastName,
+            'profileImg': self.profileImg
         }
