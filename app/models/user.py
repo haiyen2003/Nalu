@@ -14,7 +14,7 @@ class User(db.Model, UserMixin):
     email = db.Column(db.String(255), nullable=False, unique=True)
     hashed_password = db.Column(db.String(255), nullable=False)
 
-    routes = db.relatioship("Route", back_populates = 'user',cascade = 'all,delete')
+    routes = db.relatioship("Route", back_populates = 'user')
     workouts = db.relationship('Workout', back_populates = 'user', cascade = 'all,delete')
 
     @property
