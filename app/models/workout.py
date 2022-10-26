@@ -10,7 +10,7 @@ class Workout(db.Model):
     routeId = db.Column(db.Integer, db.ForeignKey('routes.id'),nullable=False)
     description = db.Column(db.String(500))
     image = db.Column(db.String(500))
-    equipment = db.Column(db.String(200), nullable=False)
+    equipment = db.Column(db.String(200), nullable=True)
     startTime = db.Column(db.DateTime, default=db.func.now())
     endTime = db.Column(db.DateTime, default=db.func.now())
     sportType = db.Column(db.String(50), nullable=False)
