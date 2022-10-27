@@ -14,7 +14,7 @@ class Route(db.Model):
     startPoint = db.Column(db.String(200), nullable=False)
     endPoint = db.Column(db.String(200), nullable=False)
     duration = db.Column(db.String(50), nullable=False)
-    sportType = db.Column(db.String(50), nullable=False)
+    mode = db.Column(db.String(50), nullable=False)
     createAt = db.Column(db.DateTime, default=db.func.now())
     updateAt = db.Column(db.DateTime, default=db.func.now())
 
@@ -31,7 +31,7 @@ class Route(db.Model):
             'startPoint': self.startPoint,
             'endPoint': self.endPoint,
             'duration': self.duration,
-            'sportType': self.sportType,
+            'mode': self.mode,
             'createAt': self.createAt,
             'updateAt': self.updateAt,
             'createdBy': {

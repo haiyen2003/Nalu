@@ -6,7 +6,7 @@ from wtforms.fields import (
 from wtforms.validators import DataRequired, Email, ValidationError
 from app.models import Route
 
-sportType_options = ['Surfing', 'Swimming']
+mode_options = ['Walking','Running', 'Biking']
 
 def name_validation(form, field):
     name = field.data
@@ -25,4 +25,4 @@ class RouteForm(FlaskForm):
     startPoint = StringField('Start Point', validators=[DataRequired()])
     endPoint = StringField ('End Point', validators=[DataRequired()])
     duration = StringField('Duration', validators= [DataRequired()])
-    sportType = SelectField('SportType', choices = sportType_options, validators=[DataRequired()])
+    mode = SelectField('Mode', choices = mode_options, validators=[DataRequired()])

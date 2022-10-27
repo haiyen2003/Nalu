@@ -47,7 +47,7 @@ def create_route():
             startPoint = form.data['startPoint'],
             endPoint = form.data['endPoint'],
             duration = form.data['duration'],
-            sportType = form.data['sportType'],
+            mode = form.data['mode'],
             createAt = now,
             updateAt = now
         )
@@ -78,7 +78,7 @@ def update_route():
         thisRoute.startPoint = form.data['startPoint'],
         thisRoute.endPoint = form.data['endPoint'],
         thisRoute.duration = form.data['duration'],
-        thisRoute.sportType = form.data['sportType'],
+        thisRoute.mode = form.data['mode'],
         thisRoute.createAt = now,
         thisRoute.updateAt = now
         db.session.commit()
