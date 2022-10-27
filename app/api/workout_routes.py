@@ -43,7 +43,7 @@ def create_workout():
             name = form.data['name'],
             equipment = form.data['equipment'],
             description = form.data['description'],
-            image = form.data['image']
+            image = form.data['image'],
             startTime = form.data['startTime'],
             endTime = form.data['endTime'],
             sportType = form.data['sportType'],
