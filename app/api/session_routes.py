@@ -33,56 +33,56 @@ def session(id):
         return session.to_dict()
 
 # create a session:
-@session_routes.route('/new', methods=["POST"])
-@login_required
-def create_workout():
-    form = SessionForm()
-    form['csrf_token'].data = request.cookies['csrf_token']
-    if form.validate_on_submit():
-        newSession = Session(
-            userId = current_user.id,
-            name = form.data['name'],
-            equipment = form.data['equipment'],
-            description = form.data['description'],
-            image = form.data['image'],
-            startTime = form.data['startTime'],
-            endTime = form.data['endTime'],
-            spotId = form.data['spotId'],
-            createAt = now,
-            updateAt = now
-        )
+# @session_routes.route('/new', methods=["POST"])
+# @login_required
+# def create_session():
+#     form = SessionForm()
+#     form['csrf_token'].data = request.cookies['csrf_token']
+#     if form.validate_on_submit():
+#         newSession = Session(
+#             userId = current_user.id,
+#             name = form.data['name'],
+#             equipment = form.data['equipment'],
+#             description = form.data['description'],
+#             image = form.data['image'],
+#             startTime = form.data['startTime'],
+#             endTime = form.data['endTime'],
+#             spotId = form.data['spotId'],
+#             createAt = now,
+#             updateAt = now
+#         )
 
-        db.session.add(newSession)
-        db.session.commit()
-        return newSession.to_dict()
+#         db.session.add(newSession)
+#         db.session.commit()
+#         return newSession.to_dict()
 
-    return {"errors" : validation_errors_to_error_messages(form.errors)}, 400
+#     return {"errors" : validation_errors_to_error_messages(form.errors)}, 400
 
 # Update a session:
-@session_routes.route('/<int:id>', methods = ['PUT'])
-@login_required
-def update_workout():
-    form = SessionForm()
-    form['csrf_token'].data = request.cookies['csrf_token']
-    thisSession = Session.query.get(id)
-    if thisSession is None:
-        return {'errors': 'Session not found'}, 404
+# @session_routes.route('/<int:id>', methods = ['PUT'])
+# @login_required
+# def update_workout():
+#     form = SessionForm()
+#     form['csrf_token'].data = request.cookies['csrf_token']
+#     thisSession = Session.query.get(id)
+#     if thisSession is None:
+#         return {'errors': 'Session not found'}, 404
 
-    if thisSession.userId != current_user.id:
-        return{'errors': 'Unauthorized'}, 403
+#     if thisSession.userId != current_user.id:
+#         return{'errors': 'Unauthorized'}, 403
 
-    if form.validate_on_submit():
-        thisSession.name = form.data['name'],
-        thisSession.equipment = form.data['equipment'],
-        thisSession.description = form.data['description'],
-        thisSession.startTime = form.data['startTime'],
-        thisSession.endTime = form.data['endTime'],
-        thisSession.createAt = now,
-        thisSession.updateAt = now
-        db.session.commit()
-        return thisSession.to_dict()
+#     if form.validate_on_submit():
+#         thisSession.name = form.data['name'],
+#         thisSession.equipment = form.data['equipment'],
+#         thisSession.description = form.data['description'],
+#         thisSession.startTime = form.data['startTime'],
+#         thisSession.endTime = form.data['endTime'],
+#         thisSession.createAt = now,
+#         thisSession.updateAt = now
+#         db.session.commit()
+#         return thisSession.to_dict()
 
-    return {'errors': validation_errors_to_error_messages(form.errors)}, 400
+#     return {'errors': validation_errors_to_error_messages(form.errors)}, 400
 
 #Delete a session
 @session_routes.route('/<int:id>', methods = ['DELETE'])

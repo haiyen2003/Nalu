@@ -2,8 +2,8 @@ from datetime import datetime
 from datetime import datetime
 from flask import Blueprint, jsonify, request
 from flask_login import login_required, current_user
-from app.forms import SpotForm
-from app.models import Spot, db, User
+from app.forms import SpotForm, SessionForm
+from app.models import Spot, db, User, Session
 from app.api.auth_routes import validation_errors_to_error_messages
 import os
 
@@ -47,6 +47,7 @@ def create_spot():
     form['csrf_token'].data = request.cookies['csrf_token']
     if form.validate_on_submit():
         newSpot = Spot(
+            userId = current_user.id,
             name = form.data['name'],
             description = form.data['description'],
             lat = form.data['lat'],
@@ -78,6 +79,7 @@ def update_spot():
         return{'errors': 'Unauthorized'}, 403
 
     if form.validate_on_submit():
+        thisSpot.userId = current_user.id,
         thisSpot.name = form.data['name'],
         thisSpot.description = form.data['description'],
         thisSpot.lat = form.data['lat'],
@@ -108,3 +110,71 @@ def delete_spot(id):
     db.session.delete(thisSpot)
     db.session.commit()
     return ("Successfully deleted!")
+
+#Create a session within a spot:
+@spot_routes.route('/<int:spotId>/sessions/new', methods = ["POST"])
+@login_required
+def create_session(spotId):
+    form = SessionForm()
+    form['csrf_token'].data = request.cookies['csrf_token']
+    thisSpot = Spot.query.get(spotId)
+    if form.validate_on_submit():
+        newSession = Session(
+            userId = current_user.id,
+            name = form.data['name'],
+            equipment = form.data['equipment'],
+            description = form.data['description'],
+            image = form.data['image'],
+            startTime = form.data['startTime'],
+            endTime = form.data['endTime'],
+            spotId = thisSpot.id,
+            createAt = now,
+            updateAt = now
+        )
+
+        db.session.add(newSession)
+        db.session.commit()
+        return newSession.to_dict()
+
+    return {"errors" : validation_errors_to_error_messages(form.errors)}, 400
+
+#Update a session within a spot:
+
+@spot_routes.route('/<int:spotId>/sessions/<int:sessionId>', methods = ['PUT'])
+@login_required
+def update_session(spotId, sessionId):
+    form = SessionForm()
+    form['csrf_token'].data = request.cookies['csrf_token']
+    thisSession = Session.query.get(sessionId)
+    thisSpot = Spot.query.get(spotId)
+
+    if thisSpot is None:
+        return {'errors': 'Spot not found'}, 404
+
+    if thisSession is None:
+        return {'errors': 'Session not found'}, 404
+
+    if thisSession.userId != current_user.id:
+        return{'errors': 'Unauthorized'}, 403
+
+    if form.validate_on_submit():
+        thisSession.userId = current_user.id,
+        thisSession.spotId = thisSpot.id,
+        thisSession.name = form.data['name'],
+        thisSession.equipment = form.data['equipment'],
+        thisSession.description = form.data['description'],
+        thisSession.startTime = form.data['startTime'],
+        thisSession.endTime = form.data['endTime'],
+        thisSession.image = form.data['image'],
+        thisSession.createAt = now,
+        thisSession.updateAt = now
+        db.session.commit()
+        return thisSession.to_dict()
+
+    return {'errors': validation_errors_to_error_messages(form.errors)}, 400
+
+# Get all the session at one specific spots:
+@spot_routes.route('/<int:spotId>/sessions')
+def all_session(spotId):
+    sessions = Session.query.filter(Session.spotId == spotId).all()
+    return {'sessions': [session.to_dict() for session in sessions]}
