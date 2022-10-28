@@ -25,8 +25,8 @@ def my_sessions():
 # get specific workout by id:
 @session_routes.route('/<int:id>')
 def session(id):
-    workout = Session.query.get(id)
-    if workout is None:
+    session = Session.query.get(id)
+    if session is None:
         return {'message': 'Session not found'}
 
     else:
@@ -40,12 +40,14 @@ def create_workout():
     form['csrf_token'].data = request.cookies['csrf_token']
     if form.validate_on_submit():
         newSession = Session(
+            userId = current_user.id,
             name = form.data['name'],
             equipment = form.data['equipment'],
             description = form.data['description'],
             image = form.data['image'],
             startTime = form.data['startTime'],
             endTime = form.data['endTime'],
+            spotId = form.data['spotId'],
             createAt = now,
             updateAt = now
         )
@@ -82,7 +84,7 @@ def update_workout():
 
     return {'errors': validation_errors_to_error_messages(form.errors)}, 400
 
-#Delete a route
+#Delete a session
 @session_routes.route('/<int:id>', methods = ['DELETE'])
 @login_required
 def delete_session(id):

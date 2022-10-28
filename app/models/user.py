@@ -9,13 +9,13 @@ class User(db.Model, UserMixin):
     id = db.Column(db.Integer, primary_key=True)
     firstName = db.Column(db.String(25), nullable=False)
     lastName = db.Column(db.String(25), nullable=False)
-    profileImg = db.Column(db.String(500), nullable=False)
+    profileImg = db.Column(db.String(500))
     username = db.Column(db.String(40), nullable=False, unique=True)
     email = db.Column(db.String(255), nullable=False, unique=True)
     hashed_password = db.Column(db.String(255), nullable=False)
 
-    routes = db.relationship("Route", back_populates = 'user')
-    workouts = db.relationship('Workout', back_populates = 'user', cascade = 'all,delete')
+    spots = db.relationship("Spot", back_populates = 'user')
+    sessions = db.relationship('Session', back_populates = 'user', cascade = 'all,delete')
 
     @property
     def password(self):

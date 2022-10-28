@@ -23,12 +23,11 @@ def description_validation(form, field):
     if len(des) < 20 or len(des) > 600:
         raise ValidationError("Description must be more than 20 characters and less than 600 characters")
 
-
 class SessionForm(FlaskForm):
     name = StringField("Session Name", validators = [DataRequired(), name_validation])
     description = TextAreaField('Route Description', validators=[DataRequired(), description_validation])
     image = StringField('Image URL', validators=[image_validation ])
     startTime = StringField('Start Time', validators=[DataRequired()])
     endTime = StringField ('End Time', validators=[DataRequired()])
-    duration = StringField('Duration', validators= [DataRequired()])
     equipment =  StringField('Equipment', validators= [DataRequired()])
+    spotId = IntegerField('SpotId', validators=[DataRequired()])
