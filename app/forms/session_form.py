@@ -2,10 +2,10 @@ from tokenize import String
 from flask_wtf import FlaskForm
 from wtforms import StringField
 from wtforms.fields import (
-    SelectField, SelectMultipleField, TextAreaField, SubmitField, IntegerField, FloatField, DecimalField
+    DateTimeField,SelectField, SelectMultipleField, TextAreaField, SubmitField, IntegerField, FloatField, DecimalField
 )
 from wtforms.validators import DataRequired, Email, ValidationError
-from app.models import Workout
+from app.models import Session
 
 def image_validation(form, field):
     img = field.data
@@ -23,14 +23,12 @@ def description_validation(form, field):
     if len(des) < 20 or len(des) > 600:
         raise ValidationError("Description must be more than 20 characters and less than 600 characters")
 
-equipment_option = ['surfboard', 'paddleboard']
 
-class WorkoutForm(FlaskForm):
-    name = StringField("Route Name", validators = [DataRequired(), name_validation])
-    distance = DecimalField('Distance', validators=[DataRequired()])
+class SessionForm(FlaskForm):
+    name = StringField("Session Name", validators = [DataRequired(), name_validation])
     description = TextAreaField('Route Description', validators=[DataRequired(), description_validation])
     image = StringField('Image URL', validators=[image_validation ])
-    startPoint = StringField('Start Point', validators=[DataRequired()])
-    endPoint = StringField ('End Point', validators=[DataRequired()])
+    startTime = DateTimeField('Start Time', validators=[DataRequired()])
+    endTime = DateTimeField ('End Time', validators=[DataRequired()])
     duration = StringField('Duration', validators= [DataRequired()])
-    equipment = SelectField('Equipment', choices=equipment_option )
+    equipment =  StringField('Equipment', validators= [DataRequired()])

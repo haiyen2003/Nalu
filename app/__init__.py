@@ -8,8 +8,8 @@ from flask_login import LoginManager
 from .models import db, User
 from .api.user_routes import user_routes
 from .api.auth_routes import auth_routes
-from .api.route_routes import route_routes
-from .api.workout_routes import workout_routes
+from .api.spot_routes import route_routes
+from .api.session_routes import workout_routes
 
 from .seeds import seed_commands
 
