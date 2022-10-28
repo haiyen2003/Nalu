@@ -11,8 +11,8 @@ class Session(db.Model):
     description = db.Column(db.String(500))
     image = db.Column(db.String(500))
     equipment = db.Column(db.String(200), nullable=True)
-    startTime = db.Column(db.DateTime, default=db.func.now())
-    endTime = db.Column(db.DateTime, default=db.func.now())
+    startTime = db.Column(db.String(50))
+    endTime = db.Column(db.String(50))
     createAt = db.Column(db.DateTime, default=db.func.now())
     updateAt = db.Column(db.DateTime, default=db.func.now())
 
