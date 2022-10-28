@@ -8,7 +8,7 @@ const actionGetKey = (key) => {
 }
 
 export const getKeyThunk = () => async (dispatch) => {
-    const res = await fetch('/api/routes/key')
+    const res = await fetch('/api/spots/key')
 
     if(res.ok){
         const thisKey = await res.json()
