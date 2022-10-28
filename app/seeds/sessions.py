@@ -9,7 +9,6 @@ def seed_sessions():
                         image = 'https://d3duq8huj13nhl.cloudfront.net/uploads/5-easiest-waves-in-waikiki-to-learn-how-to-surf/hawaii-surf-guide.jpg',
                         startTime = '6:05 AM',
                         endTime = '9:25 AM'
-
                     )
 
 
