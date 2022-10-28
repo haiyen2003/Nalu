@@ -8,7 +8,7 @@ import ProtectedRoute from './components/auth/ProtectedRoute';
 import UsersList from './components/UsersList';
 import User from './components/User';
 import { authenticate } from './store/session';
-import CreateRoute from './components/routes/CreateRoute';
+import CreateSpot from './components/routes/CreateSpot';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -41,8 +41,8 @@ function App() {
         <ProtectedRoute path='/users/:userId' exact={true} >
           <User />
         </ProtectedRoute>
-        <Route exact path = '/routes/new'>
-          <CreateRoute />
+        <Route exact path = '/spots/new'>
+          <CreateSpot />
         </Route>
         <ProtectedRoute path='/' exact={true} >
           <h1>My Home Page</h1>

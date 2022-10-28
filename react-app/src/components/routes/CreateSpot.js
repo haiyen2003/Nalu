@@ -1,10 +1,10 @@
 import {useMemo} from 'react';
 import {GoogleMap, useLoadScript, Marker} from '@react-google-maps/api';
-import './route.css'
+import './spot.css'
 import { useEffect, useState } from 'react';
 import Map from '../Map';
 
-export default function CreateRoute(){
+export default function CreateSpot(){
 
 //      const [apiKey, setApiKey] = useState(null)
 //     // const [isLoaded, setIsLoaded] = useState(false)
