@@ -5,11 +5,18 @@ from flask_login import login_required, current_user
 from app.forms import RouteForm
 from app.models import Route, db, User
 from app.api.auth_routes import validation_errors_to_error_messages
+import os
 
 route_routes = Blueprint('routes', __name__)
 now = datetime.now()
 
 # get all Routes:
+@route_routes.route('/key')
+def load_map_key():
+    print('HIT API ROUTE ====')
+    key = os.environ.get('NEXT_PUBLIC_GOOGLE_MAPS_API_KEY')
+    return {'GoogleMapApiKey': key}
+
 @route_routes.route('/')
 def routes():
     routes = Route.query.join(User).order_by(Route.distance.desc()).all()

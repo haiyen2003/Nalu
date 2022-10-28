@@ -7,13 +7,12 @@ class Workout(db.Model):
     id = db.Column(db.Integer, primary_key = True)
     name = db.Column(db.String(200), nullable=False)
     userId = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
-    routeId = db.Column(db.Integer, db.ForeignKey('routes.id'),nullable=False)
+    spotId = db.Column(db.Integer, db.ForeignKey('spots.id'),nullable=False)
     description = db.Column(db.String(500))
     image = db.Column(db.String(500))
     equipment = db.Column(db.String(200), nullable=True)
     startTime = db.Column(db.DateTime, default=db.func.now())
     endTime = db.Column(db.DateTime, default=db.func.now())
-    sportType = db.Column(db.String(50), nullable=False)
     createAt = db.Column(db.DateTime, default=db.func.now())
     updateAt = db.Column(db.DateTime, default=db.func.now())
 
@@ -30,7 +29,6 @@ class Workout(db.Model):
             'equipment': self.equipment,
             'startTime': self.startTime,
             'endTime': self.endTime,
-            'sportType': self.sportType,
             'createAt': self.createAt,
             'updateAt': self.updateAt,
             'createdBy': {
@@ -41,17 +39,14 @@ class Workout(db.Model):
                 'email': self.user.email,
                 'profileImg': self.user.profileImg,
             },
-            'route': {
-                'id': self.route.id,
-                'name': self.route.name,
-                'userId': self.route.userId,
-                'distance': self.route.distance,
-                'description': self.route.description,
-                'startPoint': self.route.startPoint,
-                'endPoint': self.route.endPoint,
-                'duration': self.route.duration,
-                'sportType': self.route.sportType,
-                'createAt': self.route.createAt,
-                'updateAt': self.route.updateAt,
+            'spot': {
+                'id': self.spot.id,
+                'name': self.spot.name,
+                'userId': self.spot.userId,
+                'description': self.spot.description,
+                'lat': self.spot.lat,
+                'lng': self.spot.lng,
+                'createAt': self.spot.createAt,
+                'updateAt': self.spot.updateAt,
             }
         }
