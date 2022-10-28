@@ -1,5 +1,5 @@
 from .db import db
 from .user import User
-from .workout import Workout
-from .route import Route
+from .session import Session
+from .spot import Spot
 from .image import Image

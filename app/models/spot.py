@@ -10,13 +10,16 @@ class Spot(db.Model):
     name = db.Column(db.String(200), nullable=False)
     userId = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
     description = db.Column(db.String(500))
-    lat = db.Column(db.String(200), nullable=False)
-    lng = db.Column(db.String(200), nullable=False)
+    lat=db.Column(db.Float(precision=12, asdecimal=False),nullable=False)
+    lng=db.Column(db.Float(precision=12, asdecimal=False),nullable=False)
+    state = db.Column(db.String(5), nullable=False)
+    difficulty = db.Column(db.String(20), nullable=False)
+    staticUrl=db.Column(db.String(3000),nullable=False)
     createAt = db.Column(db.DateTime, default=db.func.now())
     updateAt = db.Column(db.DateTime, default=db.func.now())
 
     user = db.relationship("User", back_populates = 'spots')
-    #workouts = db.relationship("Workout", back_populates = 'route', cascade = 'all,delete')
+    sessions = db.relationship("Session", back_populates = 'spot', cascade = 'all,delete')
 
     def to_dict(self):
         return {
@@ -28,6 +31,9 @@ class Spot(db.Model):
             'lng': self.lng,
             'createAt': self.createAt,
             'updateAt': self.updateAt,
+            'state': self.state,
+            'difficulty': self.difficulty,
+            'staticUrl': self.staticUrl,
             'createdBy': {
                 'id': self.user.id,
                 'firstName': self.user.firstName,

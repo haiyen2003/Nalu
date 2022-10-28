@@ -1,8 +1,8 @@
 from .db import db
 from sqlalchemy import DateTime, func
 
-class Workout(db.Model):
-    __tablename__ = 'workouts'
+class Session(db.Model):
+    __tablename__ = 'sessions'
 
     id = db.Column(db.Integer, primary_key = True)
     name = db.Column(db.String(200), nullable=False)
@@ -16,8 +16,8 @@ class Workout(db.Model):
     createAt = db.Column(db.DateTime, default=db.func.now())
     updateAt = db.Column(db.DateTime, default=db.func.now())
 
-    user = db.relationship("User", back_populates = 'workouts')
-    route = db.relationship("Route", back_populates = 'workouts')
+    user = db.relationship("User", back_populates = 'sessions')
+    spot = db.relationship("Spot", back_populates = 'sessions')
 
     def to_dict(self):
         return{
@@ -25,6 +25,7 @@ class Workout(db.Model):
             'name': self.name,
             'userId': self.userId,
             'description': self.description,
+            'spotId': self.spotId,
             'image': self.image,
             'equipment': self.equipment,
             'startTime': self.startTime,
