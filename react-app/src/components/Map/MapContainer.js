@@ -10,7 +10,7 @@ const MapContainer = ({apiKey}) => {
       return (
         <>
             {isLoaded && (
-                <GoogleMapComponent />
+                <GoogleMapComponent apiKey = {apiKey}/>
             )}
         </>
     )
