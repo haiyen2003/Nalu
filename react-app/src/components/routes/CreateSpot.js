@@ -13,9 +13,9 @@ import { MapContext } from '../../context/Map';
 
 export default function CreateSpot() {
   const history = useHistory()
+  const dispatch = useDispatch();
   const apiKey = useSelector(state => state.key)
   const [isKeyLoad, setKeyLoad] = useState(false)
-  const dispatch = useDispatch();
   const [map, setMap] = useState(null)
   const [name, setName] = useState('')
   const [description, setDescription] = useState('')
@@ -45,7 +45,6 @@ export default function CreateSpot() {
     }
   }, [ref, map]);
 
-
   useEffect(() => {
     setLoading(true)
     setTimeout(() => {
@@ -66,18 +65,118 @@ export default function CreateSpot() {
     return image
   }
 
+  const onSubmit = async (e) => {
+    e.preventDefault()
+    const payload = {
+      name,
+      description,
+      lat,
+      lng,
+      state,
+      difficulty,
+      staticUrl
+    }
+    let createdSpot = await dispatch(thunkCreateSpot(payload))
+
+    if (createdSpot) {
+      history.push(`/spots/${createdSpot.id}`)
+    }
+  }
+
+  let state_options = ['CA', 'HI', 'AK', 'WA', 'OR', 'TX', 'LA', 'AL', 'FL', 'GA', 'SC', 'NC', 'VA', 'MD', 'DE', 'NJ', 'MS', 'NY', 'CT', 'RI', 'MA', 'NH', 'ME']
+  let level_options = ['Beginner-friendly', 'Moderate', 'Expert']
   return (
-
-    //   <Wrapper apiKey={apiKey}>
-    //   <Map center={center} zoom={zoom}>
-    //     <Marker position={position} />
-    //   </Map>
-    // </Wrapper>
-    <>
+    <div className='create-spot-main'>
       <MapContext.Provider value={{ lat, lng, setLat, setLng }}>
-        <Map />
-      </MapContext.Provider>
-    </>
-  )
+        <form className='create-spot-form' onSubmit={onSubmit}>
+          <label>Location name </label>
+          <input
+            type='text'
+            name='name'
+            value={name}
+            className='create-spot-name'
+            onChange={(e) => setName(e.target.value)}
+            required
+          ></input>
 
+          <div className='input-description'>
+            <label>Description </label>
+            <input
+              type='text'
+              name='description'
+              value={description}
+              className='create-spot-description'
+              onChange={(e) => setDescription(e.target.value)}
+              required
+            ></input>
+          </div>
+
+          <div className='input-state'>
+            <label>State </label>
+            <select
+              name='state'
+              value={state}
+              className='create-spot-state'
+              onChange={(e) => setState(e.target.value)}
+              required>
+              <option value='' disabled>
+                Select a state
+              </option>
+              {state_options.map((state) => (
+                <option key={state} value={state}>
+                  {state}
+                </option>
+              ))}
+            </select>
+          </div>
+
+          <div className='input-difficulty'>
+            <label>Difficulty</label>
+            <select
+              name='difficulty'
+              value={difficulty}
+              className='create-spot-difficulty'
+              onChange={(e) => setDifficulty(e.target.value)}
+              required>
+              <option value='' disabled>
+                Select difficulty
+              </option>
+              {level_options.map((level) => (
+                <option key={level} value={level}>
+                  {level}
+                </option>
+              ))}
+            </select>
+          </div>
+          <Map />
+          <div className='input-lat'>
+            <label>Latitude</label>
+            <input
+              type='text'
+              placeholder='latitude'
+              value={lat}
+              readOnly
+            />
+          </div>
+          <div className='input-long'>
+            <label>Longtitude</label>
+            <input
+              type='text'
+              placeholder='longtitude'
+              value={lng}
+              readOnly
+            />
+          </div>
+          <button
+            className="create-spot-button"
+            type="submit"
+          >
+            Create Spot
+          </button>
+
+        </form>
+
+      </MapContext.Provider>
+    </div>
+  )
 }
