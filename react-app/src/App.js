@@ -10,6 +10,7 @@ import User from './components/User';
 import { authenticate } from './store/session';
 import CreateSpot from './components/routes/CreateSpot';
 import HomePage from './components/HomePage';
+import SpotDetail from './components/routes/SpotDetail';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -46,6 +47,9 @@ function App() {
         </ProtectedRoute>
         <Route exact path = '/spots/new'>
           <CreateSpot />
+        </Route>
+        <Route path='/spots/:spotId' exact={true} >
+          <SpotDetail />
         </Route>
         <Route path='/' exact={true} >
           <HomePage />

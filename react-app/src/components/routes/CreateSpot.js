@@ -23,7 +23,7 @@ export default function CreateSpot() {
   const [lat, setLat] = useState('')
   const [lng, setLng] = useState('')
   const [difficulty, setDifficulty] = useState('')
-  const [staticUrl, setStaticUrl] = useState('')
+  let [staticUrl, setStaticUrl] = useState('')
   const [errors, setErrors] = useState([])
   const [id, setId] = useState(0);
   const [marker, setMarker] = useState([]);
@@ -53,17 +53,19 @@ export default function CreateSpot() {
 
   }, []);
 
-  const staticMap = (res) => {
-    let image = `https://maps.googleapis.com/maps/api/staticmap?size=600x600`
-    let APIKey = apiKey
+  const staticMap = () => {
+    let image = `https://maps.googleapis.com/maps/api/staticmap?zoom=8&size=600x600`
     const color = `&path=weight:8%7Ccolor:red%7C`
     const marker = `&markers=color:blue%7Clabel:S%7C${lat},${lng}`
-    image += color + marker + '&key=' + `${APIKey.key}`
-    setStaticUrl (image)
+    image += color + marker + '&key=' + `${apiKey.key}`
+    staticUrl = image
+    console.log(staticUrl, 'THIS IS STATIC URL ====')
+    return staticUrl
   }
 
   const onSubmit = async (e) => {
     e.preventDefault()
+    setErrors([])
     staticMap()
     const payload = {
       name,
@@ -74,14 +76,32 @@ export default function CreateSpot() {
       difficulty,
       staticUrl
     }
-    let createdSpot = await dispatch(thunkCreateSpot(payload))
 
-    if (createdSpot) {
-      history.push(`/spots/${createdSpot.id}`)
-    }
+    // let createdSpot = await dispatch(thunkCreateSpot(payload))
+    // if (createdSpot) {
+    //   history.push(`/spots/${createdSpot.id}`)
+    // }
+    return dispatch(thunkCreateSpot(payload))
+      // .then(async (res) => {
+      //   const data = await res.json();
+      //   if (data && data.errors) {
+      //     setErrors(data.errors);
+      //   }
+      //   else {
+      //     history.push(`/spots/`);
+      //   }
+      // })
+      .then(
+         () => {
+          history.push(`/spots/`);
+        })
+      .catch(async (res) => {
+        const data = await res.json();
+        if (data && data.errors) {
+          setErrors(data.errors);
+        }
+      })
   }
-
-
 
   let state_options = ['CA', 'HI', 'AK', 'WA', 'OR', 'TX', 'LA', 'AL', 'FL', 'GA', 'SC', 'NC', 'VA', 'MD', 'DE', 'NJ', 'MS', 'NY', 'CT', 'RI', 'MA', 'NH', 'ME']
   let level_options = ['Beginner-friendly', 'Moderate', 'Expert']
@@ -89,6 +109,9 @@ export default function CreateSpot() {
     <div className='create-spot-main'>
       <MapContext.Provider value={{ lat, lng, setLat, setLng }}>
         <form className='create-spot-form' onSubmit={onSubmit}>
+          <ul>
+            {errors.map((error, idx) => <li key={idx}>{error}</li>)}
+          </ul>
           <label>Location name </label>
           <input
             type='text'
@@ -149,6 +172,7 @@ export default function CreateSpot() {
             </select>
           </div>
           <Map />
+
           <div className='input-lat'>
             <label>Latitude</label>
             <input
@@ -167,15 +191,15 @@ export default function CreateSpot() {
               readOnly
             />
           </div>
-          <div className='input-staticUrl'>
+          {/* <div className='input-staticUrl'>
             <label>Static Url</label>
             <input
               type='text'
               placeholder='staticUrl'
               value={staticUrl}
               readOnly
-            />
-          </div>
+            /> */}
+          {/* </div> */}
           <button
             className="create-spot-button"
             type="submit"
