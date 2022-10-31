@@ -56,17 +56,15 @@ export default function CreateSpot() {
   const staticMap = (res) => {
     let image = `https://maps.googleapis.com/maps/api/staticmap?size=600x600`
     let APIKey = apiKey
-    let route = res.routes[0]
     const color = `&path=weight:8%7Ccolor:red%7C`
-    const path = route.overview_polyline
-    const enc_path = `enc:${path}`
-    const marker = `&markers=color:blue%7Clabel:S%7C${marker.coords.lat},${marker.coords.lng}`
-    image += color + enc_path + marker + '&key=' + `${APIKey}`
-    return image
+    const marker = `&markers=color:blue%7Clabel:S%7C${lat},${lng}`
+    image += color + marker + '&key=' + `${APIKey.key}`
+    setStaticUrl (image)
   }
 
   const onSubmit = async (e) => {
     e.preventDefault()
+    staticMap()
     const payload = {
       name,
       description,
@@ -82,6 +80,8 @@ export default function CreateSpot() {
       history.push(`/spots/${createdSpot.id}`)
     }
   }
+
+
 
   let state_options = ['CA', 'HI', 'AK', 'WA', 'OR', 'TX', 'LA', 'AL', 'FL', 'GA', 'SC', 'NC', 'VA', 'MD', 'DE', 'NJ', 'MS', 'NY', 'CT', 'RI', 'MA', 'NH', 'ME']
   let level_options = ['Beginner-friendly', 'Moderate', 'Expert']
@@ -164,6 +164,15 @@ export default function CreateSpot() {
               type='text'
               placeholder='longtitude'
               value={lng}
+              readOnly
+            />
+          </div>
+          <div className='input-staticUrl'>
+            <label>Static Url</label>
+            <input
+              type='text'
+              placeholder='staticUrl'
+              value={staticUrl}
               readOnly
             />
           </div>

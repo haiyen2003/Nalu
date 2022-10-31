@@ -6,8 +6,8 @@ import { MapContext } from "../../context/Map";
 
 
 const containerStyle = {
-    width: '400px',
-    height: '400px',
+    width: '600px',
+    height: '600px',
 }
 
 const GoogleMapComponent = ({apiKey}) => {
