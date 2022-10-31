@@ -1,5 +1,4 @@
-import { useMemo } from 'react';
-import { GoogleMap, useLoadScript, Marker } from '@react-google-maps/api';
+
 import './spot.css'
 import React, { useEffect, useState, useContext } from 'react';
 import Map from '../Map';

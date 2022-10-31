@@ -26,7 +26,6 @@ const SpotList = () => {
                     return (
                         <div>
                             <div className='spotlist-name'>Name: {spot.name}</div>
-                            <div className='spotlist-name'>Spot Name: {spot.name}</div>
                             <div className='spotlist-description'>Description: {spot.description}</div>
                             <div className='spotlist-state'>State: {spot.state}</div>
                             <div className='spotlist-level'>Level: {spot.difficulty}</div>
