@@ -11,6 +11,7 @@ import { authenticate } from './store/session';
 import CreateSpot from './components/routes/CreateSpot';
 import HomePage from './components/HomePage';
 import SpotDetail from './components/routes/SpotDetail';
+import SpotList from './components/routes/SpotList';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -19,7 +20,7 @@ function App() {
 
 
   useEffect(() => {
-    (async() => {
+    (async () => {
       await dispatch(authenticate());
       setLoaded(true);
     })();
@@ -40,17 +41,21 @@ function App() {
           <SignUpForm />
         </Route>
         <ProtectedRoute path='/users' exact={true} >
-          <UsersList/>
+          <UsersList />
         </ProtectedRoute>
         <ProtectedRoute path='/users/:userId' exact={true} >
           <User />
         </ProtectedRoute>
-        <Route exact path = '/spots/new'>
+        <Route exact path='/spots/new'>
           <CreateSpot />
+        </Route>
+        <Route path='/spots' exact={true} >
+          <SpotList />
         </Route>
         <Route path='/spots/:spotId' exact={true} >
           <SpotDetail />
         </Route>
+
         <Route path='/' exact={true} >
           <HomePage />
         </Route>

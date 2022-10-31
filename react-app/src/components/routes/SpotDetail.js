@@ -3,7 +3,6 @@ import { useHistory, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { thunkGetOneSpot, thunkDeleteSpot } from '../../store/spot';
-import { GoogleMap, useLoadScript, Marker } from '@react-google-maps/api';
 import './spot.css';
 
 function SpotDetail() {
@@ -39,7 +38,6 @@ function SpotDetail() {
                     <p className='notice'>You are not an creator of this spot</p>}
                 {isOwner &&
                     <button className='button' onClick={() => handleDelete(spotId)}>Delete Spot</button>}
-
             </div>
         </div>
     )
