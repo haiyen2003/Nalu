@@ -24,9 +24,6 @@ export default function CreateSpot() {
   const [difficulty, setDifficulty] = useState('')
   let [staticUrl, setStaticUrl] = useState('')
   const [errors, setErrors] = useState([])
-  const [id, setId] = useState(0);
-  const [marker, setMarker] = useState([]);
-  const [showMarker, setShowMarker] = useState(true)
   const [loading, setLoading] = useState(false)
   const ref = useRef(null);
 
@@ -35,22 +32,6 @@ export default function CreateSpot() {
   useEffect(() => {
     dispatch(getKeyThunk()).then(() => setKeyLoad(true));
   }, [dispatch])
-
-
-  //instantiates a map within the useEffect hook in the body of the Map component.
-  useEffect(() => {
-    if (ref.current && !map) {
-      setMap(new window.google.maps.Map(ref.current, {}));
-    }
-  }, [ref, map]);
-
-  useEffect(() => {
-    setLoading(true)
-    setTimeout(() => {
-      setLoading(false);
-    }, 2000)
-
-  }, []);
 
   const staticMap = () => {
     let image = `https://maps.googleapis.com/maps/api/staticmap?zoom=8&size=600x600`
@@ -91,13 +72,15 @@ export default function CreateSpot() {
       //   }
       // })
       .then(
-         () => {
+        () => {
           history.push(`/spots/`);
         })
       .catch(async (res) => {
         const data = await res.json();
         if (data && data.errors) {
+
           setErrors(data.errors);
+          console.log(data.errors, "======data errors")
         }
       })
   }
@@ -179,6 +162,7 @@ export default function CreateSpot() {
               placeholder='latitude'
               value={lat}
               readOnly
+              required
             />
           </div>
           <div className='input-long'>
@@ -188,17 +172,9 @@ export default function CreateSpot() {
               placeholder='longtitude'
               value={lng}
               readOnly
+              required
             />
           </div>
-          {/* <div className='input-staticUrl'>
-            <label>Static Url</label>
-            <input
-              type='text'
-              placeholder='staticUrl'
-              value={staticUrl}
-              readOnly
-            /> */}
-          {/* </div> */}
           <button
             className="create-spot-button"
             type="submit"

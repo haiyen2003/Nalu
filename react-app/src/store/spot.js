@@ -58,10 +58,13 @@ export const thunkCreateSpot = (payload) => async dispatch => {
         headers: {'Content-Type': 'application/json'},
         body: JSON.stringify(payload)
     })
+
+    const data = await response.json()
     if (response.ok) {
-        const data = await response.json()
         dispatch(actionCreateSpot(data))
-        return data
+        return response
+    } else {
+        return data;
     }
 }
 
@@ -109,10 +112,12 @@ export const thunkUpdateSpot = (payload) => async dispatch => {
       body: JSON.stringify(payload),
     });
 
+    const data = await response.json()
     if (response.ok) {
-        const data = await response.json()
         dispatch(actionUpdateSpot(data))
         return data
+    } else {
+        return data.errors;
     }
 }
 

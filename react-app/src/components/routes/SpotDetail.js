@@ -21,6 +21,12 @@ function SpotDetail() {
         const deletedSpot = await dispatch(thunkDeleteSpot(spotId));
         history.push(`/spots`)
     }
+
+    const routeChange = () => {
+        let path = `/spots/${spotId}/edit`
+        history.push(path);
+    }
+
     if (!thisSpot) return null;
 
     return (
@@ -38,6 +44,8 @@ function SpotDetail() {
                     <p className='notice'>You are not an creator of this spot</p>}
                 {isOwner &&
                     <button className='button' onClick={() => handleDelete(spotId)}>Delete Spot</button>}
+                {isOwner &&
+                <button className='button' onClick={() => routeChange()}>Edit Spot</button> }
             </div>
         </div>
     )

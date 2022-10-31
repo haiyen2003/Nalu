@@ -12,6 +12,7 @@ import CreateSpot from './components/routes/CreateSpot';
 import HomePage from './components/HomePage';
 import SpotDetail from './components/routes/SpotDetail';
 import SpotList from './components/routes/SpotList';
+import UpdateSpot from './components/routes/UpdateSpot';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -52,10 +53,12 @@ function App() {
         <Route path='/spots' exact={true} >
           <SpotList />
         </Route>
+        <Route path='/spots/:spotId/edit' exact={true} >
+          <UpdateSpot />
+        </Route>
         <Route path='/spots/:spotId' exact={true} >
           <SpotDetail />
         </Route>
-
         <Route path='/' exact={true} >
           <HomePage />
         </Route>
