@@ -28,6 +28,7 @@ export default function UpdateSpot() {
     let [staticUrl, setStaticUrl] = useState('')
     const [submitted, setSubmitted] = useState(false);
     const [isKeyLoad, setKeyLoad] = useState(false)
+    const [validations, setValidations] = useState([])
 
 
     useEffect(() => {
@@ -45,7 +46,19 @@ export default function UpdateSpot() {
         image += color + marker + '&key=' + `${apiKey.key}`
         staticUrl = image
         return staticUrl
-      }
+    }
+
+    //front end input validations
+    useEffect(() => {
+        const errors = []
+        if (name.length < 5) errors.push('Name must be longer than 5 characters')
+        if (!description.length || description.length < 20) errors.push('Please enter a description more than 20 characters')
+        if (!lat) errors.push('Please locate your spot on the map')
+        if (!state) errors.push('Please choose the state')
+        if (!difficulty) errors.push('Please pick a difficulty level of your spot')
+        setValidations(errors)
+    }, [name, description, lng, lat, state, difficulty])
+
 
     const onSubmit = async (e) => {
         e.preventDefault();
@@ -82,9 +95,23 @@ export default function UpdateSpot() {
             <div className='create-spot-main'>
                 <MapContext.Provider value={{ lat, lng, setLat, setLng }}>
                     <form className='create-spot-form' onSubmit={onSubmit}>
-                        <ul>
-                            {errors.map((error, idx) => <li key={idx}>{error}</li>)}
-                        </ul>
+                        <div className='create-spot-validation'>
+                            {validations.length > 0 ? (
+                                <div className='validation-container'>
+                                    <ul>
+                                        {errors.map((error, idx) => <li key={idx}>{error}</li>)}
+                                    </ul>
+                                </div>
+                            ) : <div className='update-spot-button'>
+                                <button
+                                    className="update-spot-button"
+                                    type="submit"
+                                >
+                                    Update Spot
+                                </button>
+                            </div>}
+                        </div>
+
                         <label>Location name </label>
                         <input
                             type='text'

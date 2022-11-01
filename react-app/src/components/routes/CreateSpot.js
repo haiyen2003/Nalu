@@ -26,7 +26,7 @@ export default function CreateSpot() {
   const [errors, setErrors] = useState([])
   const [loading, setLoading] = useState(false)
   const ref = useRef(null);
-
+  const [validations, setValidations] = useState([])
 
   //get API key from backend
   useEffect(() => {
@@ -39,9 +39,19 @@ export default function CreateSpot() {
     const marker = `&markers=color:blue%7Clabel:S%7C${lat},${lng}`
     image += color + marker + '&key=' + `${apiKey.key}`
     staticUrl = image
-    console.log(staticUrl, 'THIS IS STATIC URL ====')
     return staticUrl
   }
+  //front end input validations
+  useEffect(() => {
+    const errors = []
+    if (name.length < 5) errors.push('Name must be longer than 5 characters')
+    if (!description.length || description.length < 20) errors.push('Please enter a description more than 20 characters')
+    if (!lat) errors.push('Please locate your spot on the map')
+    if (!state) errors.push('Please choose the state')
+    if (!difficulty) errors.push('Please pick a difficulty level of your spot')
+    setValidations(errors)
+  }, [name, description, lat, state, difficulty])
+
 
   const onSubmit = async (e) => {
     e.preventDefault()
@@ -57,32 +67,22 @@ export default function CreateSpot() {
       staticUrl
     }
 
-    // let createdSpot = await dispatch(thunkCreateSpot(payload))
-    // if (createdSpot) {
-    //   history.push(`/spots/${createdSpot.id}`)
-    // }
-    return dispatch(thunkCreateSpot(payload))
-      // .then(async (res) => {
-      //   const data = await res.json();
-      //   if (data && data.errors) {
-      //     setErrors(data.errors);
-      //   }
-      //   else {
-      //     history.push(`/spots/`);
-      //   }
-      // })
-      .then(
-        () => {
-          history.push(`/spots/`);
-        })
-      .catch(async (res) => {
-        const data = await res.json();
-        if (data && data.errors) {
-
-          setErrors(data.errors);
-          console.log(data.errors, "======data errors")
-        }
-      })
+    let createdSpot = await dispatch(thunkCreateSpot(payload))
+    if (createdSpot) {
+      history.push(`/spots`)
+    }
+    // return dispatch(thunkCreateSpot(payload))
+    //   .then(
+    //     () => {
+    //       history.push(`/spots/`);
+    //     })
+    //   .catch(async (res) => {
+    //     const data = await res.json();
+    //     if (data && data.errors) {
+    //       console.log(data.errors, '=======')
+    //       setErrors(data.errors);
+    //     }
+    //   })
   }
 
   let state_options = ['CA', 'HI', 'AK', 'WA', 'OR', 'TX', 'LA', 'AL', 'FL', 'GA', 'SC', 'NC', 'VA', 'MD', 'DE', 'NJ', 'MS', 'NY', 'CT', 'RI', 'MA', 'NH', 'ME']
@@ -91,9 +91,23 @@ export default function CreateSpot() {
     <div className='create-spot-main'>
       <MapContext.Provider value={{ lat, lng, setLat, setLng }}>
         <form className='create-spot-form' onSubmit={onSubmit}>
-          <ul>
-            {errors.map((error, idx) => <li key={idx}>{error}</li>)}
-          </ul>
+          <div className='create-spot-validation'>
+            {validations.length > 0 ? (
+              <div className='validation-container'>
+                <ul>
+                  {validations.map((error, idx) => <li key={idx}>{error}</li>)}
+                </ul>
+              </div>
+            ) : <div className='create-spot-button'>
+            </div>}
+            <button
+                className="create-spot-button"
+                type="submit"
+                disabled={validations.length > 0}
+              >
+                Create Spot
+              </button>
+          </div>
           <label>Location name </label>
           <input
             type='text'
@@ -175,12 +189,12 @@ export default function CreateSpot() {
               required
             />
           </div>
-          <button
+          {/* <button
             className="create-spot-button"
             type="submit"
           >
             Create Spot
-          </button>
+          </button> */}
 
         </form>
 
