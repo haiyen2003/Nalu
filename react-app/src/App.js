@@ -14,12 +14,11 @@ import SpotDetail from './components/routes/SpotDetail';
 import SpotList from './components/routes/SpotList';
 import UpdateSpot from './components/routes/UpdateSpot';
 import SessionList from './components/sessions/SessionList';
+import SessionDetail from './components/sessions/SessionDetail';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
   const dispatch = useDispatch();
-
-
 
   useEffect(() => {
     (async () => {
@@ -59,6 +58,9 @@ function App() {
         </Route>
         <Route path='/spots/:spotId' exact={true} >
           <SpotDetail />
+        </Route>
+        <Route path='/sessions/:sessionId' exact={true} >
+          <SessionDetail />
         </Route>
         <Route path='/spots/:spotId/edit' exact={true} >
           <UpdateSpot />
