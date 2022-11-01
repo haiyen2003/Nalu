@@ -22,9 +22,9 @@ function SpotDetail() {
         history.push(`/spots`)
     }
 
-    const routeChange = () => {
+    const routeChange = async () => {
         let path = `/spots/${spotId}/edit`
-        history.push(path);
+        await history.push(path);
     }
 
     if (!thisSpot) return null;

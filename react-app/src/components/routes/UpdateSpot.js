@@ -5,12 +5,10 @@ import { useHistory, useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from "react-redux";
 import { thunkGetOneSpot, thunkUpdateSpot } from '../../store/spot';
 import { getKeyThunk } from '../../store/key';
-import { Wrapper, Status } from "@googlemaps/react-wrapper";
-import { useRef } from 'react';
 import { MapContext } from '../../context/Map';
 
 export default function UpdateSpot() {
-    const { spotId } = useParams;
+    const { spotId } = useParams();
     const thisSpot = useSelector(state => state.spot[spotId])
     const apiKey = useSelector(state => state.key)
     const user = useSelector(state => state.session.user)
@@ -18,18 +16,17 @@ export default function UpdateSpot() {
     const dispatch = useDispatch();
 
     const [map, setMap] = useState(null)
-    const [name, setName] = useState('')
-    const [description, setDescription] = useState('')
-    const [state, setState] = useState('')
-    const [lat, setLat] = useState('')
-    const [lng, setLng] = useState('')
-    const [difficulty, setDifficulty] = useState('')
+    const [name, setName] = useState(thisSpot?.name)
+    const [description, setDescription] = useState(thisSpot && thisSpot?.description)
+    const [state, setState] = useState(thisSpot && thisSpot?.state)
+    const [lat, setLat] = useState(thisSpot && thisSpot?.lat)
+    const [lng, setLng] = useState(thisSpot && thisSpot?.lng)
+    const [difficulty, setDifficulty] = useState(thisSpot && thisSpot?.difficulty)
     const [errors, setErrors] = useState([]);
     let [staticUrl, setStaticUrl] = useState('')
     const [submitted, setSubmitted] = useState(false);
     const [isKeyLoad, setKeyLoad] = useState(false)
     const [validations, setValidations] = useState([])
-
 
     useEffect(() => {
         dispatch(getKeyThunk()).then(() => setKeyLoad(true));
@@ -51,8 +48,8 @@ export default function UpdateSpot() {
     //front end input validations
     useEffect(() => {
         const errors = []
-        if (name.length < 5) errors.push('Name must be longer than 5 characters')
-        if (!description.length || description.length < 20) errors.push('Please enter a description more than 20 characters')
+        if (name?.length < 5) errors.push('Name must be longer than 5 characters')
+        if (!description?.length || description?.length < 20) errors.push('Please enter a description more than 20 characters')
         if (!lat) errors.push('Please locate your spot on the map')
         if (!state) errors.push('Please choose the state')
         if (!difficulty) errors.push('Please pick a difficulty level of your spot')
@@ -74,22 +71,29 @@ export default function UpdateSpot() {
             difficulty,
             staticUrl
         }
-        return dispatch(thunkUpdateSpot(payload))
-            .then(() => {
-                history.push(`/spots/${thisSpot.id}`);
-            })
-            .catch(async (res) => {
-                const data = await res.json();
-                if (data && data.errors) {
-                    console.log(data.errors, 'DATA ERRORS')
-                    setErrors(data.errors);
-                }
-            })
+
+        let updatedSpot = await dispatch(thunkUpdateSpot(payload))
+        if (updatedSpot){
+            history.push(`/spots/${updatedSpot.id}`)
+        }
+
+        // return dispatch(thunkUpdateSpot(payload))
+        //     .then(() => {
+        //         history.push(`/spots/${thisSpot.id}`);
+        //     })
+        //     .catch(async (res) => {
+        //         const data = await res.json();
+        //         if (data && data.errors) {
+        //             console.log(data.errors, 'DATA ERRORS')
+        //             setErrors(data.errors);
+        //         }
+        //     })
     }
 
     let state_options = ['CA', 'HI', 'AK', 'WA', 'OR', 'TX', 'LA', 'AL', 'FL', 'GA', 'SC', 'NC', 'VA', 'MD', 'DE', 'NJ', 'MS', 'NY', 'CT', 'RI', 'MA', 'NH', 'ME']
     let level_options = ['Beginner-friendly', 'Moderate', 'Expert']
 
+    if (!thisSpot) return null;
     return (
         <div>
             <div className='create-spot-main'>

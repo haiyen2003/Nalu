@@ -105,11 +105,14 @@ export const thunkGetOneSpot = (id) => async dispatch => {
     }
 }
 
-export const thunkUpdateSpot = (payload) => async dispatch => {
-    const response = await fetch(`/api/spots/${payload.id}`, {
+export const thunkUpdateSpot = (payload, id) => async dispatch => {
+    console.log(payload.id, 'THIS IS ID FROM THUNK')
+    const response = await fetch(`/api/spots/${payload.id}/edit/`, {
       method: "PUT",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(payload),
+      body: JSON.stringify(
+        payload
+      ),
     });
 
     const data = await response.json()
@@ -162,6 +165,7 @@ const spotReducer = (state = initialState, action) => {
          return newState
 
         case UPDATE_SPOT:
+            newState= {};
             newState[action.spot.id] = action.spot
             return newState
 

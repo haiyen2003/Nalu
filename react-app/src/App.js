@@ -53,11 +53,11 @@ function App() {
         <Route path='/spots' exact={true} >
           <SpotList />
         </Route>
-        <Route path='/spots/:spotId/edit' exact={true} >
-          <UpdateSpot />
-        </Route>
         <Route path='/spots/:spotId' exact={true} >
           <SpotDetail />
+        </Route>
+        <Route path='/spots/:spotId/edit' exact={true} >
+          <UpdateSpot />
         </Route>
         <Route path='/' exact={true} >
           <HomePage />

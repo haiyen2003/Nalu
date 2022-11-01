@@ -66,9 +66,9 @@ def create_spot():
     return {"errors" : validation_errors_to_error_messages(form.errors)}, 400
 
 # Update a spot:
-@spot_routes.route('/<int:id>', methods = ['PUT'])
+@spot_routes.route('/<int:id>/edit', methods = ['PUT'])
 @login_required
-def update_spot():
+def update_spot(id):
     form = SpotForm()
     form['csrf_token'].data = request.cookies['csrf_token']
     thisSpot = Spot.query.get(id)
@@ -79,6 +79,8 @@ def update_spot():
         return{'errors': 'Unauthorized'}, 403
 
     if form.validate_on_submit():
+        thisSpot = Spot.query.get(id)
+        thisSpot.id = id,
         thisSpot.userId = current_user.id,
         thisSpot.name = form.data['name'],
         thisSpot.description = form.data['description'],
@@ -178,3 +180,5 @@ def update_session(spotId, sessionId):
 def all_session(spotId):
     sessions = Session.query.filter(Session.spotId == spotId).all()
     return {'sessions': [session.to_dict() for session in sessions]}
+
+

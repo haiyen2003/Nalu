@@ -101,12 +101,12 @@ export default function CreateSpot() {
             ) : <div className='create-spot-button'>
             </div>}
             <button
-                className="create-spot-button"
-                type="submit"
-                disabled={validations.length > 0}
-              >
-                Create Spot
-              </button>
+              className="create-spot-button"
+              type="submit"
+              disabled={validations.length > 0}
+            >
+              Create Spot
+            </button>
           </div>
           <label>Location name </label>
           <input
