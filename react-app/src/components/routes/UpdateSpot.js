@@ -63,7 +63,7 @@ export default function UpdateSpot() {
         staticMap()
         setSubmitted(true);
         const payload = {
-            id:spotId,
+            id: parseInt(spotId),
             name,
             description,
             lat,

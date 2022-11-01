@@ -88,6 +88,7 @@ def update_spot(id):
         thisSpot.lng = form.data['lng']
         thisSpot.state = form.data['state']
         thisSpot.staticUrl = form.data['staticUrl']
+        thisSpot.difficulty = form.data['difficulty']
         thisSpot.createAt = now
         thisSpot.updateAt = now
         db.session.commit()
@@ -132,7 +133,6 @@ def create_session(spotId):
             createAt = now,
             updateAt = now
         )
-
         db.session.add(newSession)
         db.session.commit()
         return newSession.to_dict()
