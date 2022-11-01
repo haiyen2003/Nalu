@@ -80,16 +80,15 @@ def update_spot(id):
 
     if form.validate_on_submit():
         thisSpot = Spot.query.get(id)
-        thisSpot.id = id,
-        thisSpot.userId = current_user.id,
-        thisSpot.name = form.data['name'],
-        thisSpot.description = form.data['description'],
-        thisSpot.lat = form.data['lat'],
-        thisSpot.lng = form.data['lng'],
-        thisSpot.state = form.data['state'],
-        thisSpot.difficulty = form.data['difficulty'],
-        thisSpot.staticUrl = form.data['staticUrl'],
-        thisSpot.createAt = now,
+        thisSpot.id = id
+        thisSpot.userId = current_user.id
+        thisSpot.name = form.data['name']
+        thisSpot.description = form.data['description']
+        thisSpot.lat = form.data['lat']
+        thisSpot.lng = form.data['lng']
+        thisSpot.state = form.data['state']
+        thisSpot.staticUrl = form.data['staticUrl']
+        thisSpot.createAt = now
         thisSpot.updateAt = now
         db.session.commit()
         return thisSpot.to_dict()
@@ -160,15 +159,15 @@ def update_session(spotId, sessionId):
         return{'errors': 'Unauthorized'}, 403
 
     if form.validate_on_submit():
-        thisSession.userId = current_user.id,
-        thisSession.spotId = thisSpot.id,
-        thisSession.name = form.data['name'],
-        thisSession.equipment = form.data['equipment'],
-        thisSession.description = form.data['description'],
-        thisSession.startTime = form.data['startTime'],
-        thisSession.endTime = form.data['endTime'],
-        thisSession.image = form.data['image'],
-        thisSession.createAt = now,
+        thisSession.userId = current_user.id
+        thisSession.spotId = thisSpot.id
+        thisSession.name = form.data['name']
+        thisSession.equipment = form.data['equipment']
+        thisSession.description = form.data['description']
+        thisSession.startTime = form.data['startTime']
+        thisSession.endTime = form.data['endTime']
+        thisSession.image = form.data['image']
+        thisSession.createAt = now
         thisSession.updateAt = now
         db.session.commit()
         return thisSession.to_dict()
@@ -180,5 +179,3 @@ def update_session(spotId, sessionId):
 def all_session(spotId):
     sessions = Session.query.filter(Session.spotId == spotId).all()
     return {'sessions': [session.to_dict() for session in sessions]}
-
-

@@ -63,6 +63,7 @@ export default function UpdateSpot() {
         staticMap()
         setSubmitted(true);
         const payload = {
+            id:spotId,
             name,
             description,
             lat,
@@ -76,18 +77,6 @@ export default function UpdateSpot() {
         if (updatedSpot){
             history.push(`/spots/${updatedSpot.id}`)
         }
-
-        // return dispatch(thunkUpdateSpot(payload))
-        //     .then(() => {
-        //         history.push(`/spots/${thisSpot.id}`);
-        //     })
-        //     .catch(async (res) => {
-        //         const data = await res.json();
-        //         if (data && data.errors) {
-        //             console.log(data.errors, 'DATA ERRORS')
-        //             setErrors(data.errors);
-        //         }
-        //     })
     }
 
     let state_options = ['CA', 'HI', 'AK', 'WA', 'OR', 'TX', 'LA', 'AL', 'FL', 'GA', 'SC', 'NC', 'VA', 'MD', 'DE', 'NJ', 'MS', 'NY', 'CT', 'RI', 'MA', 'NH', 'ME']
