@@ -11,7 +11,6 @@ def seed_sessions():
                         endTime = '9:25 AM'
                     )
 
-
     db.session.add(session1)
     db.session.commit()
 

@@ -50,7 +50,6 @@ const actionDeleteSession = (id) => {
     }
 }
 
-
 // THUNKS
 export const thunkCreateSession = (payload) => async dispatch => {
     const response = await fetch(`/api/spots/${payload.spotId}/sessions/new`, {

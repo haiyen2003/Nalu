@@ -3,11 +3,13 @@ import thunk from 'redux-thunk';
 import keyReducer from './key';
 import spotReducer from './spot';
 import session from './session'
+import sessionReducer from './workout';
 
 const rootReducer = combineReducers({
   session,
   spot: spotReducer,
-  key: keyReducer
+  key: keyReducer,
+  sessions: sessionReducer
 });
 
 
