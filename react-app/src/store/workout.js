@@ -145,7 +145,7 @@ const sessionReducer = (state = initialState, action) => {
 
         case GET_ALL_SESSION:
             newState = {};
-            action.sessions.sessions.forEach((session) => {
+            action.sessions.Session.map(session => {
                 newState[session.id] = session;
             });
             return newState;

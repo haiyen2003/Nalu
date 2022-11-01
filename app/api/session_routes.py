@@ -12,7 +12,11 @@ now = datetime.now()
 @session_routes.route('/')
 def sessions():
     sessions = Session.query.all()
-    return {"Session": [session.to_dict() for session in sessions]}
+    if sessions and len(sessions) > 0:
+        print(sessions, 'SESSION ======')
+        return {"Session": [session.to_dict() for session in sessions]}
+    else:
+        return {'Sessions': []}
 
 # get all sessions by current user:
 @session_routes.route('/my-sessions')

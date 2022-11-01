@@ -13,6 +13,7 @@ import HomePage from './components/HomePage';
 import SpotDetail from './components/routes/SpotDetail';
 import SpotList from './components/routes/SpotList';
 import UpdateSpot from './components/routes/UpdateSpot';
+import SessionList from './components/sessions/SessionList';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -52,6 +53,9 @@ function App() {
         </Route>
         <Route path='/spots' exact={true} >
           <SpotList />
+        </Route>
+        <Route path='/sessions' exact={true} >
+          <SessionList />
         </Route>
         <Route path='/spots/:spotId' exact={true} >
           <SpotDetail />
