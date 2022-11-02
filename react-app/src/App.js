@@ -16,6 +16,7 @@ import UpdateSpot from './components/routes/UpdateSpot';
 import SessionList from './components/sessions/SessionList';
 import SessionDetail from './components/sessions/SessionDetail';
 import CreateSession from './components/sessions/CreateSession';
+import EditSession from './components/sessions/EditSession';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -65,6 +66,9 @@ function App() {
         </Route>
         <Route path='/sessions/:sessionId' exact={true} >
           <SessionDetail />
+        </Route>
+        <Route path='/sessions/:sessionId/edit' exact={true} >
+          <EditSession />
         </Route>
         <Route path='/spots/:spotId/edit' exact={true} >
           <UpdateSpot />

@@ -105,7 +105,8 @@ export const thunkGetOneSession = (id) => async dispatch => {
 }
 
 export const thunkUpdateSession = (payload) => async dispatch => {
-    const response = await fetch(`/api/sessions/${payload.id}/edit/`, {
+    console.log(payload.id, 'THIS IS ID FROM THUNK ===')
+    const response = await fetch(`/api/sessions/${payload.id}/edit`, {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(

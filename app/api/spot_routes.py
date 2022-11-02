@@ -141,38 +141,38 @@ def create_session(spotId):
 
 #Update a session within a spot:
 
-@spot_routes.route('/<int:spotId>/sessions/<int:sessionId>', methods = ['PUT'])
-@login_required
-def update_session(spotId, sessionId):
-    form = SessionForm()
-    form['csrf_token'].data = request.cookies['csrf_token']
-    thisSession = Session.query.get(sessionId)
-    thisSpot = Spot.query.get(spotId)
+# @spot_routes.route('/<int:spotId>/sessions/<int:sessionId>', methods = ['PUT'])
+# @login_required
+# def update_session(spotId, sessionId):
+#     form = SessionForm()
+#     form['csrf_token'].data = request.cookies['csrf_token']
+#     thisSession = Session.query.get(sessionId)
+#     thisSpot = Spot.query.get(spotId)
 
-    if thisSpot is None:
-        return {'errors': 'Spot not found'}, 404
+#     if thisSpot is None:
+#         return {'errors': 'Spot not found'}, 404
 
-    if thisSession is None:
-        return {'errors': 'Session not found'}, 404
+#     if thisSession is None:
+#         return {'errors': 'Session not found'}, 404
 
-    if thisSession.userId != current_user.id:
-        return{'errors': 'Unauthorized'}, 403
+#     if thisSession.userId != current_user.id:
+#         return{'errors': 'Unauthorized'}, 403
 
-    if form.validate_on_submit():
-        thisSession.userId = current_user.id
-        thisSession.spotId = thisSpot.id
-        thisSession.name = form.data['name']
-        thisSession.equipment = form.data['equipment']
-        thisSession.description = form.data['description']
-        thisSession.startTime = form.data['startTime']
-        thisSession.endTime = form.data['endTime']
-        thisSession.image = form.data['image']
-        thisSession.createAt = now
-        thisSession.updateAt = now
-        db.session.commit()
-        return thisSession.to_dict()
+#     if form.validate_on_submit():
+#         thisSession.userId = current_user.id
+#         thisSession.spotId = thisSpot.id
+#         thisSession.name = form.data['name']
+#         thisSession.equipment = form.data['equipment']
+#         thisSession.description = form.data['description']
+#         thisSession.startTime = form.data['startTime']
+#         thisSession.endTime = form.data['endTime']
+#         thisSession.image = form.data['image']
+#         thisSession.createAt = now
+#         thisSession.updateAt = now
+#         db.session.commit()
+#         return thisSession.to_dict()
 
-    return {'errors': validation_errors_to_error_messages(form.errors)}, 400
+#     return {'errors': validation_errors_to_error_messages(form.errors)}, 400
 
 # Get all the session at one specific spots:
 @spot_routes.route('/<int:spotId>/sessions')
