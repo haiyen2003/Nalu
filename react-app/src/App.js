@@ -17,7 +17,7 @@ import SessionList from './components/sessions/SessionList';
 import SessionDetail from './components/sessions/SessionDetail';
 import CreateSession from './components/sessions/CreateSession';
 import EditSession from './components/sessions/EditSession';
-import MySpots from './components/sessions/MySession';
+import MySpots from './components/routes/MySpot';
 import MySessions from './components/sessions/MySession';
 
 function App() {
