@@ -61,9 +61,9 @@ export const thunkCreateSession = (payload) => async dispatch => {
     const data = await response.json()
     if (response.ok) {
         dispatch(actionCreateSession(data))
-        return response
+        return data
     } else {
-        return data;
+        return response.errors;
     }
 }
 
@@ -73,9 +73,12 @@ export const thunkGetAllSessions = () => async dispatch => {
         headers: { "Content-Type": "application/json" },
     });
 
+    const data = await response.json()
     if (response.ok) {
-        const data = await response.json()
         dispatch(actionGetAllSession(data))
+        return data
+    } else {
+        return response.errors
     }
 }
 
@@ -86,9 +89,12 @@ export const thunkGetMySessions = () => async dispatch => {
         headers: { "Content-Type": "application/json" },
     })
 
+    const data = await response.json()
     if (response.ok) {
-        const data = await response.json()
         dispatch(actionGetMySessions(data))
+        return data
+    } else {
+        return response.errors;
     }
 }
 
@@ -97,10 +103,12 @@ export const thunkGetOneSession = (id) => async dispatch => {
         method: "GET",
         headers: { "Content-Type": "application/json" },
     });
-
+    const data = await response.json()
     if (response.ok) {
-        const data = await response.json()
         dispatch(actionGetOneSession(data))
+        return data
+    } else {
+        return response.errors
     }
 }
 
@@ -153,7 +161,7 @@ const sessionReducer = (state = initialState, action) => {
 
         case GET_MY_SESSION:
             newState = {};
-            action.sessions.sessions.forEach((session) => {
+            action.sessions.mySessions.map((session) => {
                 newState[session.id] = session;
             });
             return newState;
