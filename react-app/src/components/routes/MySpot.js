@@ -1,23 +1,28 @@
-import React from "react";
-import { useHistory, useParams } from "react-router-dom";
-import { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { thunkGetAllSpots, thunkDeleteSpot } from '../../store/spot';
-import './spot.css';
+import { useEffect } from "react"
+import { useDispatch, useSelector } from "react-redux"
+import { NavLink, useHistory } from "react-router-dom"
+import { thunkGetMySpot } from "../../store/spot"
+import './spot.css'
 
-const SpotList = () => {
-    const dispatch = useDispatch();
+export default function MySpots() {
+    const dispatch = useDispatch()
+    const history = useHistory()
+    const currentUser = useSelector(state => state.session.user)
     const data = useSelector((state) => state.spot)
     let spots;
-
+    if (!currentUser) {
+        history.push('/')
+    }
     if (data) {
         spots = Object.values(data);
     }
+
     useEffect(() => {
-        dispatch(thunkGetAllSpots())
+        dispatch(thunkGetMySpot())
     }, [dispatch])
 
     if (!data) return null;
+
     return (
         <div>
             <div className='list-container'>
@@ -37,5 +42,3 @@ const SpotList = () => {
         </div>
     )
 }
-
-export default SpotList;

@@ -14,7 +14,6 @@ export default function UpdateSpot() {
     const user = useSelector(state => state.session.user)
     const history = useHistory()
     const dispatch = useDispatch();
-
     const [map, setMap] = useState(null)
     const [name, setName] = useState(thisSpot?.name)
     const [description, setDescription] = useState(thisSpot && thisSpot?.description)

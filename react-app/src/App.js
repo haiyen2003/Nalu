@@ -17,6 +17,8 @@ import SessionList from './components/sessions/SessionList';
 import SessionDetail from './components/sessions/SessionDetail';
 import CreateSession from './components/sessions/CreateSession';
 import EditSession from './components/sessions/EditSession';
+import MySpots from './components/sessions/MySession';
+import MySessions from './components/sessions/MySession';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -54,6 +56,12 @@ function App() {
         </Route>
         <Route path='/spots' exact={true} >
           <SpotList />
+        </Route>
+        <Route path='/my-spots' exact={true} >
+          <MySpots />
+        </Route>
+        <Route path='/my-sessions' exact={true} >
+          <MySessions />
         </Route>
         <Route path='/sessions' exact={true} >
           <SessionList />

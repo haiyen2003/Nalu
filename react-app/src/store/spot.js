@@ -106,7 +106,6 @@ export const thunkGetOneSpot = (id) => async dispatch => {
 }
 
 export const thunkUpdateSpot = (payload, id) => async dispatch => {
-    console.log(payload.id, 'THIS IS ID FROM THUNK')
     const response = await fetch(`/api/spots/${payload.id}/edit`, {
       method: "PUT",
       headers: { "Content-Type": "application/json" },
