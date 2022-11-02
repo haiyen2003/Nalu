@@ -13,7 +13,6 @@ now = datetime.now()
 def sessions():
     sessions = Session.query.all()
     if sessions and len(sessions) > 0:
-        print(sessions, 'SESSION ======')
         return {"Session": [session.to_dict() for session in sessions]}
     else:
         return {'Sessions': []}
@@ -24,7 +23,10 @@ def sessions():
 def my_sessions():
     currentUserId = current_user.id
     sessions = Session.query.filter(Session.userId == currentUserId).all()
-    return {'mySessions': [session.to_dict() for session in sessions]}
+    if sessions and len(sessions) > 0:
+        return {'mySessions': [session.to_dict() for session in sessions]}
+    else:
+        return {'mySessions': []}
 
 # get specific workout by id:
 @session_routes.route('/<int:id>')

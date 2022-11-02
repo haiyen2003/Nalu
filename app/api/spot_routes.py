@@ -19,7 +19,10 @@ def load_map_key():
 @spot_routes.route('/')
 def spots():
     spots = Spot.query.join(User).all()
-    return {"spots": [spot.to_dict() for spot in spots]}
+    if spots and len(spots) > 0:
+        return {"spots": [spot.to_dict() for spot in spots]}
+    else:
+        return {'spots': []}
 
 # get all spots by current user:
 @spot_routes.route('/my-spots')
@@ -27,7 +30,10 @@ def spots():
 def my_spots():
     currentUserId = current_user.id
     spots = Spot.query.join(User).filter(Spot.userId == currentUserId).all()
-    return {'mySpots': [spot.to_dict() for spot in spots]}
+    if spots and len(spots) > 0:
+        return {'mySpots': [spot.to_dict() for spot in spots]}
+    else:
+        return {'mySpots': []}
 
 # get specific route by id:
 @spot_routes.route('/<int:id>')
@@ -178,4 +184,7 @@ def create_session(spotId):
 @spot_routes.route('/<int:spotId>/sessions')
 def all_session(spotId):
     sessions = Session.query.filter(Session.spotId == spotId).all()
-    return {'sessions': [session.to_dict() for session in sessions]}
+    if sessions and len(sessions) > 0:
+        return {'sessions': [session.to_dict() for session in sessions]}
+    else:
+        return {'sessions': []}

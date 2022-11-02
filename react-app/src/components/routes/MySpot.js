@@ -22,7 +22,6 @@ export default function MySpots() {
     }, [dispatch])
 
     if (!data) return null;
-
     return (
         <div>
             <div className='list-container'>
