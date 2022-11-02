@@ -6,6 +6,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { thunkGetOneSpot, thunkUpdateSpot } from '../../store/spot';
 import { getKeyThunk } from '../../store/key';
 import { MapContext } from '../../context/Map';
+import { GoogleMap, useLoadScript, Marker } from '@react-google-maps/api';
+import { useMemo, useCallback, useRef } from "react"
 
 export default function UpdateSpot() {
     const { spotId } = useParams();
@@ -22,7 +24,8 @@ export default function UpdateSpot() {
     const [lng, setLng] = useState(thisSpot && thisSpot?.lng)
     const [difficulty, setDifficulty] = useState(thisSpot && thisSpot?.difficulty)
     const [errors, setErrors] = useState([]);
-    let [staticUrl, setStaticUrl] = useState('')
+    const [staticUrl, setStaticUrl] = useState(thisSpot?.staticUrl)
+    const [staticMap, UpdateStaticMap] = useState(null)
     const [submitted, setSubmitted] = useState(false);
     const [isKeyLoad, setKeyLoad] = useState(false)
     const [validations, setValidations] = useState([])
@@ -35,14 +38,15 @@ export default function UpdateSpot() {
         dispatch(thunkGetOneSpot(spotId))
     }, [dispatch, spotId])
 
-    const staticMap = () => {
-        let image = `https://maps.googleapis.com/maps/api/staticmap?zoom=8&size=600x600`
-        const color = `&path=weight:8%7Ccolor:red%7C`
-        const marker = `&markers=color:blue%7Clabel:S%7C${thisSpot.lat},${thisSpot.lng}`
-        image += color + marker + '&key=' + `${apiKey.key}`
-        staticUrl = image
-        return staticUrl
-    }
+    // const staticMap = () => {
+    //     let image = `https://maps.googleapis.com/maps/api/staticmap?zoom=8&size=600x600`
+    //     const color = `&path=weight:8%7Ccolor:red%7C`
+    //     const marker = `&markers=color:blue%7Clabel:S%7C${thisSpot.lat},${thisSpot.lng}`
+    //     image += color + marker + '&key=' + `${apiKey.key}`
+    //     //setStaticUrl(image);
+    //     console.log(staticUrl, 'THIS IS NEW STATIC URL');
+    //     return staticUrl
+    // }
 
     //front end input validations
     useEffect(() => {
@@ -59,7 +63,7 @@ export default function UpdateSpot() {
     const onSubmit = async (e) => {
         e.preventDefault();
         setErrors([]);
-        staticMap()
+        // const newStaticUrl = staticMap();
         setSubmitted(true);
         const payload = {
             id: parseInt(spotId),
@@ -71,9 +75,9 @@ export default function UpdateSpot() {
             difficulty,
             staticUrl
         }
-
+        console.log(staticUrl, 'THIS IS STATIC URL FROM PAYLOAD')
         let updatedSpot = await dispatch(thunkUpdateSpot(payload))
-        if (updatedSpot){
+        if (updatedSpot) {
             history.push(`/spots/${updatedSpot.id}`)
         }
     }
@@ -85,7 +89,7 @@ export default function UpdateSpot() {
     return (
         <div>
             <div className='create-spot-main'>
-                <MapContext.Provider value={{ lat, lng, setLat, setLng }}>
+                <MapContext.Provider value={{ lat, lng, setLat, setLng, staticUrl, setStaticUrl, UpdateStaticMap }}>
                     <form className='create-spot-form' onSubmit={onSubmit}>
                         <div className='create-spot-validation'>
                             {validations.length > 0 ? (
@@ -164,7 +168,6 @@ export default function UpdateSpot() {
                             </select>
                         </div>
                         <Map />
-
                         <div className='input-lat'>
                             <label>Latitude</label>
                             <input
@@ -180,6 +183,15 @@ export default function UpdateSpot() {
                                 type='text'
                                 placeholder='longtitude'
                                 value={lng}
+                                readOnly
+                            />
+                        </div>
+                        <div className='input-long'>
+                            <label>Static Url</label>
+                            <input
+                                type='text'
+                                placeholder='staticUrl'
+                                value={staticUrl}
                                 readOnly
                             />
                         </div>

@@ -47,7 +47,7 @@ function CreateSession() {
             name,
             description,
             userId: user.id,
-            spotId: spot.id,
+            spotId: spotId,
             image,
             equipment,
             startTime,

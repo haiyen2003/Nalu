@@ -26,9 +26,7 @@ function SpotDetail() {
         let path = `/spots/${spotId}/edit`
         await history.push(path);
     }
-
     if (!thisSpot) return null;
-
     return (
         <div className='spot-container'>
             <div className='spot-name'>Spot Name: {thisSpot.name}</div>
