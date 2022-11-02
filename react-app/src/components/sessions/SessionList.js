@@ -28,8 +28,8 @@ const SessionList = () => {
                         <div>
                             <div className='spotlist-name'>Name: {session.name}</div>
                             <div className='spotlist-description'>Description: {session.description}</div>
-                            <div className='spotlist-state'>State: {session.image}</div>
-                            <div className='spotlist-level'>Level: {session.equipment}</div>
+                            <div className='spotlist-state'>Image: {session.image}</div>
+                            <div className='spotlist-level'>Equipment: {session.equipment}</div>
                             <div className='spotlist-level'>Start Time: {session.startTime}</div>
                             <div className='spotlist-level'>End Time: {session.endTime}</div>
                             <div className='spotlist-img-container'> <img className='spot-img' src={session.image}></img></div>

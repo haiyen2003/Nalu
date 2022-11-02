@@ -8,6 +8,7 @@ def seed_sessions():
                         description='Waikiki this morning is glassy with light off-shore wind, water temperature around 70 degree, low tide at 9AM',
                         image = 'https://d3duq8huj13nhl.cloudfront.net/uploads/5-easiest-waves-in-waikiki-to-learn-how-to-surf/hawaii-surf-guide.jpg',
                         startTime = '6:05 AM',
+                        equipment = "10'0 Longboard",
                         endTime = '9:25 AM'
                     )
 
@@ -18,6 +19,7 @@ def seed_sessions():
                         description='Waikiki this afternoon is glassy with light off-shore wind, water temperature around 70 degree, low tide at 9AM',
                         image = 'https://d3duq8huj13nhl.cloudfront.net/uploads/surfing-queens-hawaii.jpg',
                         startTime = '6:05 PM',
+                        equipment = "9'0 Longboard",
                         endTime = '7:25 PM'
                     )
 
@@ -28,6 +30,7 @@ def seed_sessions():
                         description='Pacifica this morning is glassy with light off-shore wind, water temperature around 70 degree, low tide at 9AM',
                         image = 'https://d3duq8huj13nhl.cloudfront.net/uploads/diamond-head-surfing.jpg',
                         startTime = '6:05 AM',
+                        equipment = "8'6 Longboard",
                         endTime = '9:25 AM'
                     )
 

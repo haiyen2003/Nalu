@@ -20,6 +20,7 @@ function CreateSession() {
     const [equipment, setEquipment] = useState('')
     const [startTime, setStartTime] = useState('')
     const [endTime, setEndTime] = useState('')
+    const [errors, setErrors] = useState([])
 
     useEffect(() => {
         const errors = [];
@@ -39,8 +40,6 @@ function CreateSession() {
         setValidations(errors)
     }, [name, description, image, equipment, startTime, endTime])
 
-
-
     const onSubmit = async (e) => {
         e.preventDefault()
         setErrors([])
@@ -49,7 +48,6 @@ function CreateSession() {
             description,
             userId: user.id,
             spotId: spot.id,
-            description,
             image,
             equipment,
             startTime,
@@ -83,9 +81,67 @@ function CreateSession() {
                     </div>
 
                     <div>
-                        
+                        <label>Session name </label>
+                        <input
+                            type='text'
+                            name='name'
+                            value={name}
+                            className='create-spot-name'
+                            onChange={(e) => setName(e.target.value)}
+                            required
+                        ></input>
                     </div>
-
+                    <div className='input-description'>
+                        <label>Description </label>
+                        <input
+                            type='text'
+                            name='description'
+                            value={description}
+                            className='create-spot-description'
+                            onChange={(e) => setDescription(e.target.value)}
+                            required
+                        ></input>
+                    </div>
+                    <div className='input-image'>
+                        <label>Image </label>
+                        <input
+                            type='text'
+                            name='image'
+                            value={image}
+                            className='create-session-image'
+                            onChange={(e) => setImage(e.target.value)}
+                        ></input>
+                    </div>
+                    <div className='input-equipment'>
+                        <label>Equipment </label>
+                        <input
+                            type='text'
+                            name='equipment'
+                            value={equipment}
+                            className='create-session-image'
+                            onChange={(e) => setEquipment(e.target.value)}
+                        ></input>
+                    </div>
+                    <div className='input-startTime'>
+                        <label>Start Time </label>
+                        <input
+                            type='urltime-local'
+                            name='startTime'
+                            value={startTime}
+                            className='create-session-image'
+                            onChange={(e) => setStartTime(e.target.value)}
+                        ></input>
+                    </div>
+                    <div className='input-endTime'>
+                        <label>End Time </label>
+                        <input
+                            type='urltime-local'
+                            name='endTime'
+                            value={endTime}
+                            className='create-session-image'
+                            onChange={(e) => setEndTime(e.target.value)}
+                        ></input>
+                    </div>
                 </form>
             </div>
         </>
