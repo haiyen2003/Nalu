@@ -13,7 +13,7 @@ now = datetime.now()
 def sessions():
     sessions = Session.query.all()
     if sessions and len(sessions) > 0:
-        return {"Session": [session.to_dict() for session in sessions]}
+        return {"Sessions": [session.to_dict() for session in sessions]}
     else:
         return {'Sessions': []}
 

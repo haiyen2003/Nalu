@@ -8,6 +8,7 @@ import './Session.css';
 const SessionList = () => {
     const dispatch = useDispatch();
     const data = useSelector((state) => state.sessions)
+    console.log(data, 'THIS IS DATA =====')
     let sessions;
 
     if (data) {
