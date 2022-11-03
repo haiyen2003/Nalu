@@ -11,7 +11,7 @@
     right: 0;
     left: 0;
     z-index: 1030px;
-    width: 100vw;
+    width: 90vw;
     justify-content: space-between;
     align-items: center;
     padding-top: 2px;
@@ -93,4 +93,17 @@
     padding: 6px 0 4px;
     text-align: left;
     width: 100%;
+}
+.button-signup {
+    text-decoration: none;
+    border: none;
+    color: black;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    padding: 1px 6px 1px 6px;
+}
+
+.button-signup:hover {
+    color: #0098ae;
 }

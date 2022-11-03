@@ -44,7 +44,6 @@ function ProfileButton({ user }) {
       {showMenu && (
         <ul className="profile-dropdown">
           <li>Hello, {user.firstName}</li>
-          <li>{user.email}</li>
           <li>
             <button className='dropdown-button' onClick={setRoute}>My Spots</button>
           </li>
