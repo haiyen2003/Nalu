@@ -33,7 +33,7 @@ class User(db.Model, UserMixin):
             'id': self.id,
             'username': self.username,
             'email': self.email,
-            'firstNamer': self.firstName,
+            'firstName': self.firstName,
             'lastName': self.lastName,
             'profileImg': self.profileImg
         }

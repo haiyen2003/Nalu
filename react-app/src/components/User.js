@@ -31,6 +31,9 @@ function User() {
       <li>
         <strong>Email</strong> {user.email}
       </li>
+      <li>
+        <strong>firstName</strong> {user.firstName}
+      </li>
     </ul>
   );
 }
