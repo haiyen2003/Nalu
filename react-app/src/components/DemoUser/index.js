@@ -9,9 +9,7 @@ export default function LoginDemoUser() {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        const email = 'demo@aa.io';
-        const password = 'password';
-        return dispatch(sessionActions.login({ email, password }))
+        return dispatch(sessionActions.login('demo@aa.io','password'))
     }
     return (
         <form onSubmit={handleSubmit}>
