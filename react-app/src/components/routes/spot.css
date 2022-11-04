@@ -69,3 +69,20 @@
     word-wrap: break-word;
     padding-bottom: 5px;
 }
+
+.spot-log-button{
+    background-color: #054f7a;
+    font-size: 12px;
+    border: none;
+    color: white;
+    padding: 3px 6px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    cursor: pointer;
+    margin-right: 3px
+}
+
+.spot-log-button:hover{
+    background-color: #0098ae;
+}
