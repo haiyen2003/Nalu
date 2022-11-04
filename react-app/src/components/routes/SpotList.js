@@ -8,6 +8,7 @@ import './spot.css';
 const SpotList = () => {
     const dispatch = useDispatch();
     const data = useSelector((state) => state.spot)
+    const history = useHistory();
     let spots;
 
     if (data) {
@@ -29,6 +30,10 @@ const SpotList = () => {
                             <div className='spotlist-state _input'>State: {spot.state}</div>
                             <div className='spotlist-level _input'>Level: {spot.difficulty}</div>
                             <div className='spotlist-img-container'> <img className='spot-img' src={spot.staticUrl}></img></div>
+                            <div className = 'spot-buttons'>
+                            <button onClick={ () => {history.push(`/spots/${spot.id}/sessions/new`)}}>Log Session Here</button>
+                            <button onClick={ () => {history.push(`/spots/${spot.id}`)}}>Spot Detail</button>
+                            </div>
                         </div>
                     )
                 })}
