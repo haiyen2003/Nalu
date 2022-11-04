@@ -31,3 +31,23 @@
     width: 624px;
     border-color: rgba(34, 34, 34, 0.1);
 }
+
+.spot-container{
+    display: flex;
+    flex-direction: column;
+    margin: auto;
+    width: 800px;
+}
+.list-container{
+    display: flex;
+    flex-direction: column;
+    margin: auto;
+    width: 900px;
+    padding-top: 50px;
+}
+.list-one-container{
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 30px;
+}
+

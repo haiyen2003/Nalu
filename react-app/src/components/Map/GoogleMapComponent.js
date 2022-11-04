@@ -37,7 +37,7 @@ const GoogleMapComponent = ({ apiKey }) => {
         // context.setLat(e.latLng.lat())
         // context.setLng(e.latLng.lng())
         // if (lat && lng) {
-        let image = `https://maps.googleapis.com/maps/api/staticmap?zoom=8&size=600x600`
+        let image = `https://maps.googleapis.com/maps/api/staticmap?zoom=12&size=600x400`
         const color = `&path=weight:8%7Ccolor:red%7C`
         const marker = `&markers=color:blue%7Clabel:S%7C${lat},${lng}`
         image += color + marker + '&key=' + `${apiKey}`

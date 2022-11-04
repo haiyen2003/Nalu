@@ -16,14 +16,14 @@ const SpotList = () => {
     useEffect(() => {
         dispatch(thunkGetAllSpots())
     }, [dispatch])
-
+    
     if (!data) return null;
     return (
         <div>
             <div className='list-container'>
                 {spots.map((spot) => {
                     return (
-                        <div>
+                        <div className='list-one-container'>
                             <div className='spotlist-name'>Name: {spot.name}</div>
                             <div className='spotlist-description'>Description: {spot.description}</div>
                             <div className='spotlist-state'>State: {spot.state}</div>
