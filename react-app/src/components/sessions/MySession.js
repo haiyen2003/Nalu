@@ -1,7 +1,7 @@
 import { useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { NavLink, useHistory } from "react-router-dom"
-import { thunkGetMySessions } from "../../store/workout"
+import { thunkGetMySessions, thunkDeleteSession } from "../../store/workout"
 import './Session.css'
 
 export default function MySessions() {
@@ -21,27 +21,47 @@ export default function MySessions() {
         dispatch(thunkGetMySessions())
     }, [dispatch])
 
+    const handleDelete = async sessionId => {
+        const deletedSession = await dispatch(thunkDeleteSession(sessionId));
+        history.push(`/sessions`)
+    }
+
     if (!data) return null;
     return (
-        <>
-            <div>
-                <div className='list-container'>
-                    {sessions.map((session) => {
-                        return (
-                            <div>
-                                <div className='spotlist-name'>Name: {session.name}</div>
-                                <div className='spotlist-description'>Description: {session.description}</div>
-                                <div className='spotlist-state'>Image: {session.image}</div>
-                                <div className='spotlist-level'>Equipment: {session.equipment}</div>
-                                <div className='spotlist-level'>Start Time: {session.startTime}</div>
-                                <div className='spotlist-level'>End Time: {session.endTime}</div>
-                                <div className='spotlist-img-container'> <img className='spot-img' src={session.image}></img></div>
+        <div className='spot-page-container'>
+        <div className='list-container'>
+            {sessions.map((session) => {
+                return (
+                    <div className='list-one-container'>
+                        <div className ='left-container'>
+                            <div className='user-info'>
+                                <div className ='user-name'>{session.createdBy.firstName} {session.createdBy.lastName}</div>
+                                <div className ='user-name'>{session.createAt}</div>
                             </div>
-                        )
-                    })}
+                        </div>
+                        <div className='spotlist-name _input'> {session.name}</div>
+                        <div className='spotlist-description _input'>Description: {session.description}</div>
+                        <div className='spotlist-level _input'>Equipment: {session.equipment}</div>
+                        <div className='spotlist-level _input'>Start Time: {session.startTime}</div>
+                        <div className='spotlist-level _input'>End Time: {session.endTime}</div>
+                        <div className = 'spotlist-img-container'><img className = 'spot-img' src ={session.spot.staticUrl}></img></div>
+                        <div className='spotlist-img-container'>
+                        <img className='session-img' src={session.image}></img>
+                        </div>
+                        <div className = 'spot-buttons'>
+                        <button className = 'spot-log-button' onClick={ () => {history.push(`/sessions/${session.id}`)}}>Session Detail</button>
+                        {currentUser.id == session.userId &&
+                        <>
+                        <button className = 'spot-log-button' onClick={ () => {history.push(`/sessions/${session.id}/edit`)}}>Edit Session</button>
+                        <button className = 'spot-log-button' onClick={ () => {handleDelete(session.id)}}>Delete Session</button>
+                        </>
+                        }
+                        </div>
+                    </div>
+                )
+            })}
 
-                </div>
-            </div>
-        </>
+        </div>
+    </div>
     )
 }
