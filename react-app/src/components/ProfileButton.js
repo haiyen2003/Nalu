@@ -17,6 +17,15 @@ function ProfileButton({ user }) {
   const setRoute2 = () => {
     history.push('/my-sessions')
   }
+
+  const setRoute3 = () => {
+    history.push('/spots/new')
+  }
+
+  const setRoute4 = () => {
+    history.push('/spots')
+  }
+
   useEffect(() => {
     if (!showMenu) return;
 
@@ -39,7 +48,7 @@ function ProfileButton({ user }) {
         <i className="fas fa-user-circle" /> */}
       {/* </button> */}
       <div className='profile-button' onClick={openMenu}>
-       {user.firstName.charAt(0)}
+        {user.firstName.charAt(0)}
       </div>
       {showMenu && (
         <ul className="profile-dropdown">
@@ -49,6 +58,12 @@ function ProfileButton({ user }) {
           </li>
           <li>
             <button className='dropdown-button' onClick={setRoute2}>My Sessions</button>
+          </li>
+          <li>
+            <button className='dropdown-button' onClick={setRoute3}>Create a Spot</button>
+          </li>
+          <li>
+            <button className='dropdown-button' onClick={setRoute4}>Log your Session</button>
           </li>
           <li>
             <button className='dropdown-button' onClick={logout}>Log Out</button>
