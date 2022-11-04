@@ -11,8 +11,8 @@ const HomePage = () => {
             <div className ='overlay'></div>
             <video src = {surfVideo} autoPlay loop muted playsInline className='home-video'/>
             <div className = 'Homepage-content'>
-                <h1>Nalu: wave, surf - Hawaiian </h1>
-                <h1>Ke nalu nei ka moana, the ocean is full of waves.</h1>
+                <div className='h1'>Nalu: wave - Hawaiian</div>
+                <div className='h1'>Ke nalu nei ka moana, the ocean is full of waves.</div>
                 <div className = 'home-explore'>
                     <NavLink className = 'home-spots' to={'/spots'}>Find your wave</NavLink>
                 </div>

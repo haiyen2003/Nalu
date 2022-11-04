@@ -23,22 +23,21 @@
     justify-content: center;
     margin: auto;
     position: absolute;
-    top: 25%;
+    top: 35%;
 }
-.home-main-container .Homepage-content h1 {
+.h1 {
     font-size: 3rem;
     color: #ffffff;
     top: 50%;
     font-family: 'Poppins', sans-serif;
     font-weight: 400;
     font-style: italic;
+    margin-bottom: 20px;
 }
 .home-spots{
     text-decoration: none;
     background-color: #ffffff9e;
     border-radius: 20px;
-    /* width: 135px; */
-    /* height: 100px; */
     padding: 9px 30px 10px 30px;
     font-size: 20px;
     color: black;
@@ -49,4 +48,18 @@
 
 .home-spots:hover{
     background-color: #ffffffe8;
+}
+
+.h2{
+    font-size: 2rem;
+    color: #ffffff;
+    top: 50%;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 400;
+    font-style: italic;
+    margin-bottom: 40px;
+}
+
+.home-explore{
+    margin-top: 40px
 }

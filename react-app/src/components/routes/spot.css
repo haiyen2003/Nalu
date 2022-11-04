@@ -2,3 +2,29 @@
     width: 600px;
     height: 600px;
 }
+.edit-group-button {
+    width: 624px;
+    height: 3rem;
+    background-color: #054f7a;
+    text-align: center;
+    color: white;
+    border-radius: 8px;
+    border: none;
+    font-weight: 700;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+.edit-group-button:hover {
+    background-color: #0098ae;
+}
+.edit-group-button:disabled,
+.edit-group-button[disabled]{
+  border: 1px solid #999999;
+  background-color: #cccccc;
+  color: #666666;
+}
+.dropdown-option {
+    width: 624px;
+    border-color: rgba(34, 34, 34, 0.1);
+}

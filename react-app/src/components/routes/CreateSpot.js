@@ -76,9 +76,97 @@ export default function CreateSpot() {
   let state_options = ['CA', 'HI', 'AK', 'WA', 'OR', 'TX', 'LA', 'AL', 'FL', 'GA', 'SC', 'NC', 'VA', 'MD', 'DE', 'NJ', 'MS', 'NY', 'CT', 'RI', 'MA', 'NH', 'ME']
   let level_options = ['Beginner-friendly', 'Moderate', 'Expert']
   return (
-    <div className='create-spot-main'>
+    <div className='form'>
+      <div className='title-div'>
+        <div className='top-title'>Create a Spot</div>
+      </div>
       <MapContext.Provider value={{ lat, lng, setLat, setLng, staticUrl, setStaticUrl, UpdateStaticMap }}>
         <form className='create-spot-form' onSubmit={onSubmit}>
+
+          <label>Location name </label>
+          <input
+            className='input-box'
+            type='text'
+            name='name'
+            value={name}
+
+            onChange={(e) => setName(e.target.value)}
+            required
+          ></input>
+
+          <div className='field'>
+            <label>Description </label>
+            <input
+              type='text'
+              name='description'
+              value={description}
+              className='input-box'
+              onChange={(e) => setDescription(e.target.value)}
+              required
+            ></input>
+          </div>
+
+          <div className='field'>
+            <label>State </label>
+            <select
+              name='state'
+              value={state}
+              className='dropdown-option'
+              onChange={(e) => setState(e.target.value)}
+              required>
+              <option value='' disabled>
+                Select a state
+              </option>
+              {state_options.map((state) => (
+                <option className='dropdown-option' key={state} value={state}>
+                  {state}
+                </option>
+              ))}
+            </select>
+          </div>
+
+          <div className='field'>
+            <label>Difficulty</label>
+            <select
+              name='difficulty'
+              value={difficulty}
+              className='dropdown-option'
+              onChange={(e) => setDifficulty(e.target.value)}
+              required>
+              <option className='dropdown-option' value='' disabled>
+                Select difficulty
+              </option>
+              {level_options.map((level) => (
+                <option className='dropdown-option' key={level} value={level}>
+                  {level}
+                </option>
+              ))}
+            </select>
+          </div>
+          <Map />
+
+          <div className='field'>
+            <label>Latitude</label>
+            <input
+              className='input-box'
+              type='text'
+              placeholder='latitude'
+              value={lat}
+              readOnly
+              required
+            />
+          </div>
+          <div className='field'>
+            <label>Longtitude</label>
+            <input
+              className='input-box'
+              type='text'
+              placeholder='longtitude'
+              value={lng}
+              readOnly
+              required
+            />
+          </div>
           <div className='create-spot-validation'>
             {validations.length > 0 ? (
               <div className='validation-container'>
@@ -89,100 +177,13 @@ export default function CreateSpot() {
             ) : <div className='create-spot-button'>
             </div>}
             <button
-              className="create-spot-button"
+              className='edit-group-button'
               type="submit"
               disabled={validations.length > 0}
             >
               Create Spot
             </button>
           </div>
-          <label>Location name </label>
-          <input
-            type='text'
-            name='name'
-            value={name}
-            className='create-spot-name'
-            onChange={(e) => setName(e.target.value)}
-            required
-          ></input>
-
-          <div className='input-description'>
-            <label>Description </label>
-            <input
-              type='text'
-              name='description'
-              value={description}
-              className='create-spot-description'
-              onChange={(e) => setDescription(e.target.value)}
-              required
-            ></input>
-          </div>
-
-          <div className='input-state'>
-            <label>State </label>
-            <select
-              name='state'
-              value={state}
-              className='create-spot-state'
-              onChange={(e) => setState(e.target.value)}
-              required>
-              <option value='' disabled>
-                Select a state
-              </option>
-              {state_options.map((state) => (
-                <option key={state} value={state}>
-                  {state}
-                </option>
-              ))}
-            </select>
-          </div>
-
-          <div className='input-difficulty'>
-            <label>Difficulty</label>
-            <select
-              name='difficulty'
-              value={difficulty}
-              className='create-spot-difficulty'
-              onChange={(e) => setDifficulty(e.target.value)}
-              required>
-              <option value='' disabled>
-                Select difficulty
-              </option>
-              {level_options.map((level) => (
-                <option key={level} value={level}>
-                  {level}
-                </option>
-              ))}
-            </select>
-          </div>
-          <Map />
-
-          <div className='input-lat'>
-            <label>Latitude</label>
-            <input
-              type='text'
-              placeholder='latitude'
-              value={lat}
-              readOnly
-              required
-            />
-          </div>
-          <div className='input-long'>
-            <label>Longtitude</label>
-            <input
-              type='text'
-              placeholder='longtitude'
-              value={lng}
-              readOnly
-              required
-            />
-          </div>
-          {/* <button
-            className="create-spot-button"
-            type="submit"
-          >
-            Create Spot
-          </button> */}
 
         </form>
 
