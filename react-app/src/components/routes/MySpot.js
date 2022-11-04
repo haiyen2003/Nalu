@@ -23,16 +23,20 @@ export default function MySpots() {
 
     if (!data) return null;
     return (
-        <div>
+        <div className='spot-page-container'>
             <div className='list-container'>
                 {spots.map((spot) => {
                     return (
-                        <div>
-                            <div className='spotlist-name'>Name: {spot.name}</div>
-                            <div className='spotlist-description'>Description: {spot.description}</div>
-                            <div className='spotlist-state'>State: {spot.state}</div>
-                            <div className='spotlist-level'>Level: {spot.difficulty}</div>
+                        <div className='list-one-container'>
+                            <div className='spotlist-name _input'>{spot.name}</div>
+                            <div className='spotlist-description _input'>Description: {spot.description}</div>
+                            <div className='spotlist-state _input'>State: {spot.state}</div>
+                            <div className='spotlist-level _input'>Level: {spot.difficulty}</div>
                             <div className='spotlist-img-container'> <img className='spot-img' src={spot.staticUrl}></img></div>
+                            <div className = 'spot-buttons'>
+                            <button className = 'spot-log-button' onClick={ () => {history.push(`/spots/${spot.id}/sessions/new`)}}>Log Session Here</button>
+                            <button className = 'spot-log-button' onClick={ () => {history.push(`/spots/${spot.id}`)}}>Spot Detail</button>
+                            </div>
                         </div>
                     )
                 })}
