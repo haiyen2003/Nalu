@@ -26,6 +26,7 @@ const SignUpForm = () => {
         }
     };
 
+    
     const updateUsername = (e) => {
         setUsername(e.target.value);
     };
@@ -77,6 +78,7 @@ const SignUpForm = () => {
                             name='firstName'
                             onChange={updateFirstName}
                             value={firstName}
+                            required
                         ></input>
                     </div>
                     <div className='field'>
@@ -87,6 +89,7 @@ const SignUpForm = () => {
                             name='lastName'
                             onChange={updateLastName}
                             value={lastName}
+                            required
                         ></input>
                     </div>
                     <div className='field'>
@@ -97,6 +100,7 @@ const SignUpForm = () => {
                             name='username'
                             onChange={updateUsername}
                             value={username}
+                            required
                         ></input>
                     </div>
                     <div className='field'>
@@ -107,6 +111,7 @@ const SignUpForm = () => {
                             name='email'
                             onChange={updateEmail}
                             value={email}
+                            required
                         ></input>
                     </div>
                     <div className='field'>
@@ -138,7 +143,7 @@ const SignUpForm = () => {
                             name='profileImg'
                             onChange={updateProfileImg}
                             value={profileImg}
-                            required={true}
+                            required
                         ></input>
                     </div>
                 </div>
