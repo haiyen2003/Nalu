@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { Redirect, useHistory } from 'react-router-dom';
 import { login } from '../../store/session';
 import { Link , NavLink} from 'react-router-dom';
-
+import './LoginForm.css'
 const LoginForm = ({ onClose }) => {
   const [errors, setErrors] = useState([]);
   const [email, setEmail] = useState('');
@@ -40,7 +40,7 @@ const LoginForm = ({ onClose }) => {
   }
 
   return (
-    <>
+    <div className='login-form'>
       <div className='top-div-login-form'>
         <div className='Login-title'>Log in</div>
         <div className='Signup-title'>Not a member? <Link className='signup-link' onClick={navigateToSignUpForm}>Sign up</Link> </div>
@@ -75,7 +75,7 @@ const LoginForm = ({ onClose }) => {
           </div>
         </div>
       </form>
-    </>
+    </div>
   );
 };
 

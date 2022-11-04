@@ -8,6 +8,7 @@ import './NavBar.css'
 import ProfileButton from './ProfileButton';
 import LoginDemoUser from './DemoUser';
 import LoginForm from './auth/LoginForm';
+import LoginFormModal from './auth/LoginFormModal';
 
 
 const NavBar = ({isLoaded}) => {
@@ -28,7 +29,7 @@ const NavBar = ({isLoaded}) => {
     sessionLinks = (
       <>
       <LoginDemoUser />
-      <LoginForm />
+      <LoginFormModal />
       <NavLink className = 'button-signup' to='/signup'>Sign up</NavLink>
       </>
     )

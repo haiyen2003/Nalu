@@ -107,3 +107,7 @@
 .button-signup:hover {
     color: #0098ae;
 }
+
+.nav-buttons{
+    display:flex;
+}
