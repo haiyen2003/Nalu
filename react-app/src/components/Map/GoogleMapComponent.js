@@ -32,17 +32,11 @@ const GoogleMapComponent = ({ apiKey }) => {
     const checkMarker = (lat && lng) ? <Marker position={{ lat, lng }} /> : null
 
     UpdateStaticMap = (e) => {
-        // setLat(e.latLng.lat())
-        // setLng(e.latLng.lng())
-        // context.setLat(e.latLng.lat())
-        // context.setLng(e.latLng.lng())
-        // if (lat && lng) {
         let image = `https://maps.googleapis.com/maps/api/staticmap?zoom=12&size=600x400`
-        const color = `&path=weight:8%7Ccolor:red%7C`
+        // const color = `&path=weight:8%7Ccolor:red%7C`
         const marker = `&markers=color:blue%7Clabel:S%7C${lat},${lng}`
-        image += color + marker + '&key=' + `${apiKey}`
+        image += marker + '&key=' + `${apiKey}`
         staticUrl = image
-        console.log(lat, 'THIS IS LAT')
         // context.setStaticUrl(e.image())
         console.log(staticUrl, 'THIS IS STATIC URL ====')
         return staticUrl
@@ -58,12 +52,10 @@ const GoogleMapComponent = ({ apiKey }) => {
                         console.log(e.latLng.lat(), " ======== ")
                         setLat(e.latLng.lat())
                         setLng(e.latLng.lng())
-                        console.log(lat, lng, 'LAT AND LNG AFTER SET')
-                        //UpdateStaticMap()
+
                         setStaticUrl(UpdateStaticMap())
-                        console.log(staticUrl, 'STATIC URL IN ONCLICK')
+
                         context.setLat(e.latLng.lat())
-                        console.log(lat, 'this is new lat')
                         context.setLng(e.latLng.lng())
                         context.setStaticUrl(UpdateStaticMap())
                     }}

@@ -45,6 +45,7 @@ class Session(db.Model):
                 'name': self.spot.name,
                 'userId': self.spot.userId,
                 'description': self.spot.description,
+                'staticUrl': self.spot.staticUrl,
                 'lat': self.spot.lat,
                 'lng': self.spot.lng,
                 'createAt': self.spot.createAt,
