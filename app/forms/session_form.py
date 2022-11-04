@@ -26,7 +26,7 @@ def description_validation(form, field):
 class SessionForm(FlaskForm):
     name = StringField("Session Name", validators = [DataRequired(), name_validation])
     description = TextAreaField('Route Description', validators=[DataRequired(), description_validation])
-    image = StringField('Image URL', validators=[image_validation ])
+    image = StringField('Image URL')
     startTime = StringField('Start Time', validators=[DataRequired()])
     endTime = StringField ('End Time', validators=[DataRequired()])
     equipment =  StringField('Equipment', validators= [DataRequired()])

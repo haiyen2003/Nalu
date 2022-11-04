@@ -56,9 +56,83 @@ export default function EditSession() {
         }
     }
     return (
-        <>
+        <div className='form'>
+            <div className='title-div'>
+                Update Session
+            </div>
+
             <div className='update-session-main'>
                 <form className='update-session-form' onSubmit={onSubmit}>
+
+
+                    <div className='field'>
+                        <label className='label'>Session name </label>
+                        <input
+                            type='text'
+                            name='name'
+                            value={name}
+                            className='input-box'
+                            onChange={(e) => setName(e.target.value)}
+                            required
+                        ></input>
+                    </div>
+
+                    <div className='field'>
+                        <label className='label'>Description </label>
+                        <input
+                            type='text'
+                            name='description'
+                            value={description}
+                            className='input-box'
+                            onChange={(e) => setDescription(e.target.value)}
+                            required
+                        ></input>
+                    </div>
+
+                    <div className='field'>
+                        <label className='label'>Image </label>
+                        <input
+                            type='text'
+                            name='image'
+                            value={image}
+                            className='input-box'
+                            onChange={(e) => setImage(e.target.value)}
+                        ></input>
+                    </div>
+
+                    <div className='field'>
+                        <label className='label'>Equipment </label>
+                        <input
+                            type='text'
+                            name='equipment'
+                            value={equipment}
+                            className='input-box'
+                            onChange={(e) => setEquipment(e.target.value)}
+                        ></input>
+                    </div>
+
+                    <div className='field'>
+                        <label className='label'>Start Time </label>
+                        <input
+                            type='urltime-local'
+                            name='startTime'
+                            value={startTime}
+                            className='input-box'
+                            onChange={(e) => setStartTime(e.target.value)}
+                        ></input>
+                    </div>
+
+                    <div className='field'>
+                        <label className='label'>End Time </label>
+                        <input
+                            type='urltime-local'
+                            name='endTime'
+                            value={endTime}
+                            className='input-box'
+                            onChange={(e) => setEndTime(e.target.value)}
+                        ></input>
+                    </div>
+
                     <div className='update-session-validation'>
                         {validations.length > 0 ? (
                             <div className='validation-container'>
@@ -69,78 +143,15 @@ export default function EditSession() {
                         ) : <div className='update-spot-button'>
                         </div>}
                         <button
-                            className="update-spot-button"
+                            className="edit-group-button"
                             type="submit"
                             disabled={validations.length > 0}
                         >
                             Update Session
                         </button>
                     </div>
-
-                    <div>
-                        <label>Session name </label>
-                        <input
-                            type='text'
-                            name='name'
-                            value={name}
-                            className='create-spot-name'
-                            onChange={(e) => setName(e.target.value)}
-                            required
-                        ></input>
-                    </div>
-                    <div className='input-description'>
-                        <label>Description </label>
-                        <input
-                            type='text'
-                            name='description'
-                            value={description}
-                            className='create-spot-description'
-                            onChange={(e) => setDescription(e.target.value)}
-                            required
-                        ></input>
-                    </div>
-                    <div className='input-image'>
-                        <label>Image </label>
-                        <input
-                            type='text'
-                            name='image'
-                            value={image}
-                            className='create-session-image'
-                            onChange={(e) => setImage(e.target.value)}
-                        ></input>
-                    </div>
-                    <div className='input-equipment'>
-                        <label>Equipment </label>
-                        <input
-                            type='text'
-                            name='equipment'
-                            value={equipment}
-                            className='create-session-image'
-                            onChange={(e) => setEquipment(e.target.value)}
-                        ></input>
-                    </div>
-                    <div className='input-startTime'>
-                        <label>Start Time </label>
-                        <input
-                            type='urltime-local'
-                            name='startTime'
-                            value={startTime}
-                            className='create-session-image'
-                            onChange={(e) => setStartTime(e.target.value)}
-                        ></input>
-                    </div>
-                    <div className='input-endTime'>
-                        <label>End Time </label>
-                        <input
-                            type='urltime-local'
-                            name='endTime'
-                            value={endTime}
-                            className='create-session-image'
-                            onChange={(e) => setEndTime(e.target.value)}
-                        ></input>
-                    </div>
                 </form>
             </div>
-        </>
+        </div>
     )
 }
