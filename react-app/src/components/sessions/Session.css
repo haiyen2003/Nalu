@@ -1,10 +1,14 @@
 .session-img{
-    width: 320px;
-    height: 180px;
-    background-color: grey;
+    width: 360px;
+    height: 200px;
 }
 .session-map-img{
     border-radius: 50%;
     width: 200px;
     height: 200px;
+}
+
+.user-name{
+    font-size: 14px;
+    color: grey
 }
