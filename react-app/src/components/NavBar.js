@@ -29,7 +29,7 @@ const NavBar = ({isLoaded}) => {
       <>
       <LoginDemoUser />
       <LoginFormModal />
-      <NavLink className = 'button-signup' to='/signup'>Sign up</NavLink>
+      <NavLink className = 'button-signup' to='/sign-up'>Sign up</NavLink>
       </>
     )
   }
