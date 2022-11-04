@@ -1,0 +1,10 @@
+.session-img{
+    width: 320px;
+    height: 180px;
+    background-color: grey;
+}
+.session-map-img{
+    border-radius: 50%;
+    width: 200px;
+    height: 200px;
+}
