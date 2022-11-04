@@ -34,41 +34,10 @@ const NavBar = ({isLoaded}) => {
     )
   }
   return (
-    // <nav id='header'>
-    //   <div className='navbar container'>
-    //     <div className='logo-container'>
-    //       <NavLink exact to='/'>
-    //         <img class='logo' src={logoImg}></img>
-    //       </NavLink>
-    //     </div>
-    //     <div>
-    //       <NavLink to='/' exact={true} activeClassName='active'>
-    //         Home
-    //       </NavLink>
-    //     </div>
-    //     <div>
-    //       <NavLink to='/login' exact={true} activeClassName='active'>
-    //         Login
-    //       </NavLink>
-    //     </div>
-    //     <div>
-    //       <NavLink to='/sign-up' exact={true} activeClassName='active'>
-    //         Sign Up
-    //       </NavLink>
-    //     </div>
-    //     <div>
-    //       <NavLink to='/users' exact={true} activeClassName='active'>
-    //         Users
-    //       </NavLink>
-    //     </div>
-    //     <div>
-    //       <LogoutButton />
-    //     </div>
-    //   </div>
-    // </nav>
+
     <div className={sessionUser ? "navbar logged-in" : 'navbar logged-out'}>
     <div className='logo-container'>
-        <NavLink exact to='/'>
+        <NavLink exact to= {sessionUser ? '/spots' : '/'}>
             <img className='logo' src={logoImg}></img>
         </NavLink>
     </div>

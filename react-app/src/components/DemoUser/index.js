@@ -1,15 +1,16 @@
 import React, { useState } from 'react';
 import * as sessionActions from '../../store/session';
 import { useDispatch, useSelector } from 'react-redux';
-import { Redirect } from 'react-router-dom';
+import { Redirect, useHistory } from 'react-router-dom';
 import './DemoUser.css';
 
 export default function LoginDemoUser() {
     const dispatch = useDispatch();
-
+    const history = useHistory()
     const handleSubmit = (e) => {
         e.preventDefault();
-        return dispatch(sessionActions.login('demo@aa.io','password'))
+        dispatch(sessionActions.login('demo@aa.io','password'))
+        history.push('/spots')
     }
     return (
         <form onSubmit={handleSubmit}>

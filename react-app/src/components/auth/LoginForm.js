@@ -22,6 +22,7 @@ const LoginForm = ({ onClose }) => {
   const onLogin = async (e) => {
     e.preventDefault();
     const data = await dispatch(login(email, password));
+    history.push('/spots')
     if (data) {
       setErrors(data);
     }
