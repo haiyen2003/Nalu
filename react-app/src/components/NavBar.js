@@ -20,7 +20,6 @@ const NavBar = ({isLoaded}) => {
     sessionLinks = (
       <>
           <div className='right-navbar'>
-          <div className='new-group-container'> <NavLink className='new-group' to={`/spots/new`}>Create your spots</NavLink></div>
               <div className='button-profile'> <ProfileButton user={sessionUser} /></div>
           </div>
       </>
