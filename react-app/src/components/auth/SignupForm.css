@@ -11,7 +11,7 @@
 .label {
     font-size: 18px;
     padding-bottom: 5px;
-    padding-top: 30px;
+    padding-top: 15px;
 }
 
 .field {
@@ -46,4 +46,12 @@
 
 .top-field{
     padding-bottom: 30px;
+}
+.title-div {
+    width: 624px;
+    display: flex;
+    flex-direction: column;
+    height: auto;
+    align-items: center;
+    justify-content: center;
 }

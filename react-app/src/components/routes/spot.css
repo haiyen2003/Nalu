@@ -1,7 +1,8 @@
-.map-container{
+.map-container {
     width: 600px;
     height: 600px;
 }
+
 .edit-group-button {
     width: 624px;
     height: 3rem;
@@ -18,12 +19,14 @@
 .edit-group-button:hover {
     background-color: #0098ae;
 }
+
 .edit-group-button:disabled,
-.edit-group-button[disabled]{
-  border: 1px solid #999999;
-  background-color: #cccccc;
-  color: #666666;
+.edit-group-button[disabled] {
+    border: 1px solid #999999;
+    background-color: #cccccc;
+    color: #666666;
 }
+
 .dropdown-option {
     width: 624px;
     border-color: rgba(34, 34, 34, 0.1);

@@ -78,12 +78,12 @@ export default function CreateSpot() {
   return (
     <div className='form'>
       <div className='title-div'>
-        <div className='top-title'>Create a Spot</div>
+        Create a Spot
       </div>
       <MapContext.Provider value={{ lat, lng, setLat, setLng, staticUrl, setStaticUrl, UpdateStaticMap }}>
         <form className='create-spot-form' onSubmit={onSubmit}>
 
-          <label>Location name </label>
+          <label className='label'>Location name </label>
           <input
             className='input-box'
             type='text'
@@ -95,7 +95,7 @@ export default function CreateSpot() {
           ></input>
 
           <div className='field'>
-            <label>Description </label>
+            <label className='label'>Description </label>
             <input
               type='text'
               name='description'
@@ -107,7 +107,7 @@ export default function CreateSpot() {
           </div>
 
           <div className='field'>
-            <label>State </label>
+            <label className='label'>State </label>
             <select
               name='state'
               value={state}
@@ -126,7 +126,7 @@ export default function CreateSpot() {
           </div>
 
           <div className='field'>
-            <label>Difficulty</label>
+            <label className='label'>Difficulty</label>
             <select
               name='difficulty'
               value={difficulty}
@@ -146,7 +146,7 @@ export default function CreateSpot() {
           <Map />
 
           <div className='field'>
-            <label>Latitude</label>
+            <label className='label'>Latitude</label>
             <input
               className='input-box'
               type='text'
@@ -157,7 +157,7 @@ export default function CreateSpot() {
             />
           </div>
           <div className='field'>
-            <label>Longtitude</label>
+            <label className='label'>Longtitude</label>
             <input
               className='input-box'
               type='text'

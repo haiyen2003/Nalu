@@ -87,123 +87,126 @@ export default function UpdateSpot() {
 
     if (!thisSpot) return null;
     return (
-        <div>
-            <div className='create-spot-main'>
-                <MapContext.Provider value={{ lat, lng, setLat, setLng, staticUrl, setStaticUrl, UpdateStaticMap }}>
-                    <form className='create-spot-form' onSubmit={onSubmit}>
-                        <div className='create-spot-validation'>
-                            {validations.length > 0 ? (
-                                <div className='validation-container'>
-                                    <ul>
-                                        {errors.map((error, idx) => <li key={idx}>{error}</li>)}
-                                    </ul>
-                                </div>
-                            ) : <div className='update-spot-button'>
-                                <button
-                                    className="update-spot-button"
-                                    type="submit"
-                                >
-                                    Update Spot
-                                </button>
-                            </div>}
-                        </div>
+        <div className='form'>
+            <div className='title-div'>
+                Update Spot
+            </div>
 
-                        <label>Location name </label>
+            <MapContext.Provider value={{ lat, lng, setLat, setLng, staticUrl, setStaticUrl, UpdateStaticMap }}>
+                <form className='create-spot-form' onSubmit={onSubmit}>
+
+
+                    <label className='label'>Location name </label>
+                    <input
+                        type='text'
+                        name='name'
+                        value={name}
+                        className='input-box'
+                        onChange={(e) => setName(e.target.value)}
+                        required
+                    ></input>
+
+                    <div className='field'>
+                        <label className='label'>Description </label>
                         <input
                             type='text'
-                            name='name'
-                            value={name}
-                            className='create-spot-name'
-                            onChange={(e) => setName(e.target.value)}
+                            name='description'
+                            value={description}
+                            className='input-box'
+                            onChange={(e) => setDescription(e.target.value)}
                             required
                         ></input>
+                    </div>
 
-                        <div className='input-description'>
-                            <label>Description </label>
-                            <input
-                                type='text'
-                                name='description'
-                                value={description}
-                                className='create-spot-description'
-                                onChange={(e) => setDescription(e.target.value)}
-                                required
-                            ></input>
-                        </div>
-
-                        <div className='input-state'>
-                            <label>State </label>
-                            <select
-                                name='state'
-                                value={state}
-                                className='create-spot-state'
-                                onChange={(e) => setState(e.target.value)}
-                                required>
-                                <option value='' disabled>
-                                    Select a state
+                    <div className='field'>
+                        <label className='label'>State </label>
+                        <select
+                            name='state'
+                            value={state}
+                            className='dropdown-option'
+                            onChange={(e) => setState(e.target.value)}
+                            required>
+                            <option value='' disabled>
+                                Select a state
+                            </option>
+                            {state_options.map((state) => (
+                                <option className='dropdown-option' key={state} value={state}>
+                                    {state}
                                 </option>
-                                {state_options.map((state) => (
-                                    <option key={state} value={state}>
-                                        {state}
-                                    </option>
-                                ))}
-                            </select>
-                        </div>
+                            ))}
+                        </select>
+                    </div>
 
-                        <div className='input-difficulty'>
-                            <label>Difficulty</label>
-                            <select
-                                name='difficulty'
-                                value={difficulty}
-                                className='create-spot-difficulty'
-                                onChange={(e) => setDifficulty(e.target.value)}
-                                required>
-                                <option value='' disabled>
-                                    Select difficulty
+                    <div className='field'>
+                        <label className='label'>Difficulty</label>
+                        <select
+                            name='difficulty'
+                            value={difficulty}
+                            className='dropdown-option'
+                            onChange={(e) => setDifficulty(e.target.value)}
+                            required>
+                            <option className='dropdown-option' value='' disabled>
+                                Select difficulty
+                            </option>
+                            {level_options.map((level) => (
+                                <option className='dropdown-option' key={level} value={level}>
+                                    {level}
                                 </option>
-                                {level_options.map((level) => (
-                                    <option key={level} value={level}>
-                                        {level}
-                                    </option>
-                                ))}
-                            </select>
-                        </div>
-                        <Map />
-                        <div className='input-lat'>
-                            <label>Latitude</label>
-                            <input
-                                type='text'
-                                placeholder='latitude'
-                                value={lat}
-                                readOnly
-                            />
-                        </div>
-                        <div className='input-long'>
-                            <label>Longtitude</label>
-                            <input
-                                type='text'
-                                placeholder='longtitude'
-                                value={lng}
-                                readOnly
-                            />
-                        </div>
-                        <div className='input-long'>
-                            <label>Static Url</label>
-                            <input
-                                type='text'
-                                placeholder='staticUrl'
-                                value={staticUrl}
-                                readOnly
-                            />
-                        </div>
-                        <button
-                            className="create-spot-button"
-                            type="submit"
-                        >
-                            Update Spot
-                        </button>
-                    </form>
-                </MapContext.Provider>
-            </div>
+                            ))}
+                        </select>
+                    </div>
+                    <Map />
+
+                    <div className='field'>
+                        <label className='label'>Latitude</label>
+                        <input
+                            className='input-box'
+                            type='text'
+                            placeholder='latitude'
+                            value={lat}
+                            readOnly
+                        />
+                    </div>
+
+                    <div className='field'>
+                        <label className='label'>Longtitude</label>
+                        <input
+                            className='input-box'
+                            type='text'
+                            placeholder='longtitude'
+                            value={lng}
+                            readOnly
+                        />
+                    </div>
+
+                    <div className='field'>
+                        <label className='label'>Static Url</label>
+                        <input
+                            className='input-box'
+                            type='text'
+                            placeholder='staticUrl'
+                            value={staticUrl}
+                            readOnly
+                        />
+                    </div>
+
+                    <div className='create-spot-validation'>
+                        {validations.length > 0 ? (
+                            <div className='validation-container'>
+                                <ul>
+                                    {validations.map((error, idx) => <li key={idx}>{error}</li>)}
+                                </ul>
+                            </div>
+                        ) : <div className='create-spot-button'>  </div>}
+                            <button
+                                className="edit-group-button"
+                                type="submit"
+                            >
+                                Update Spot
+                            </button>
+                    </div>
+                </form>
+            </MapContext.Provider>
         </div>
     )
 }
