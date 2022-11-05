@@ -44,9 +44,9 @@ function SpotDetail() {
                     {!isOwner &&
                         <p className='notice'>You are not an creator of this spot</p>}
                     {isOwner &&
-                        <button className='button' onClick={() => handleDelete(spotId)}>Delete Spot</button>}
+                        <button className='spot-log-button' onClick={() => handleDelete(spotId)}>Delete Spot</button>}
                     {isOwner &&
-                        <button className='button' onClick={() => routeChange()}>Edit Spot</button>}
+                        <button className='spot-log-button' onClick={() => routeChange()}>Edit Spot</button>}
                 </div>
             </div>
             <div className='spot-level'>THIS IS SESSIONS: {thisSpot.sessions.map((session) => {
