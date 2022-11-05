@@ -39,6 +39,7 @@ def my_spots():
 @spot_routes.route('/<int:id>')
 def spot(id):
     spot = Spot.query.get(id)
+    
     if spot is None:
         return {'message': 'Spot not found'}
 

@@ -34,6 +34,7 @@ class Spot(db.Model):
             'state': self.state,
             'difficulty': self.difficulty,
             'staticUrl': self.staticUrl,
+            'sessions': [session.to_dict() for session in self.sessions],
             'createdBy': {
                 'id': self.user.id,
                 'firstName': self.user.firstName,

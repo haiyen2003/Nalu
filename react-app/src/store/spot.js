@@ -5,6 +5,7 @@ const UPDATE_SPOT = 'spot/UPDATE_SPOT';
 const GET_ONE_SPOT = 'spot/GET_ONE_SPOT';
 const GET_MY_SPOT = 'spot/GET_MY_SPOT';
 const DELETE_SPOT = 'spot/DELETE_SPOT';
+const GET_SPOT_SESSION = 'spot/GET_SPOT_SESSION';
 
 // ACTION CREATORS
 
@@ -47,6 +48,13 @@ const actionDeleteSpot = (id) => {
     return {
         type: DELETE_SPOT,
         id
+    }
+}
+
+const actionGetSpotSession = (sessions) => {
+    return {
+        type: GET_SPOT_SESSION,
+        sessions
     }
 }
 
@@ -136,6 +144,19 @@ export const thunkDeleteSpot = (id) => async dispatch => {
 
     if (response.ok) {
         dispatch(actionDeleteSpot(id))
+    }
+}
+
+export const thunkGetSpotSession = (id) => async dispatch => {
+    const response = await fetch(`/api/spots/${id}/sessions`)
+
+    const data = response.json()
+    if (response.ok) {
+        dispatch(actionGetSpotSession(data))
+        return data
+    }
+    else {
+        return data.errors
     }
 }
 

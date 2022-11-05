@@ -12,10 +12,13 @@ function SessionDetail() {
     const user = useSelector((state) => state.session.user);
     const thisSession = useSelector((state) => state.sessions[sessionId])
     const isOwner = user?.id === thisSession?.userId;
+  
 
     useEffect(() => {
         dispatch(thunkGetOneSession(sessionId))
+
     }, [dispatch, sessionId])
+
 
     const handleDelete = async sessionId => {
         const deletedSession = await dispatch(thunkDeleteSession(sessionId));
@@ -32,12 +35,12 @@ function SessionDetail() {
     return (
         <div className='session-container'>
             <div className='sessionlist-name'>Name: {thisSession.name}</div>
-                            <div className='sessionlist-description'>Description: {thisSession.description}</div>
-                            <div className='sessionlist-state'>State: {thisSession.image}</div>
-                            <div className='sessionlist-level'>Equipment: {thisSession.equipment}</div>
-                            <div className='sessionlist-level'>Start Time: {thisSession.startTime}</div>
-                            <div className='sessionlist-level'>End Time: {thisSession.endTime}</div>
-                            <div className='sessionlist-img-container'> <img className='session-img' src={thisSession.image}></img></div>
+            <div className='sessionlist-description'>Description: {thisSession.description}</div>
+            <div className='sessionlist-state'>State: {thisSession.image}</div>
+            <div className='sessionlist-level'>Equipment: {thisSession.equipment}</div>
+            <div className='sessionlist-level'>Start Time: {thisSession.startTime}</div>
+            <div className='sessionlist-level'>End Time: {thisSession.endTime}</div>
+            <div className='sessionlist-img-container'> <img className='session-img' src={thisSession.image}></img></div>
 
             <div className='button-container'>
                 {!isOwner &&
@@ -45,7 +48,7 @@ function SessionDetail() {
                 {isOwner &&
                     <button className='button' onClick={() => handleDelete(sessionId)}>Delete Session</button>}
                 {isOwner &&
-                <button className='button' onClick={() => routeChange()}>Edit Session</button> }
+                    <button className='button' onClick={() => routeChange()}>Edit Session</button>}
             </div>
         </div>
     )
