@@ -47,7 +47,7 @@ export default function CreateSpot() {
     const errors = []
     if (name.length < 5) errors.push('Name must be longer than 5 characters')
     if (!description.length || description.length < 20) errors.push('Please enter a description more than 20 characters')
-    if (!lat) errors.push('Please locate your spot on the map')
+    if (!lat || lat == null || lat == 37.53221987607712 && lng == -122.39010570624356 ) errors.push('Please click on the map twice to locate your spot')
     if (!state) errors.push('Please choose the state')
     if (!difficulty) errors.push('Please pick a difficulty level of your spot')
     setValidations(errors)
