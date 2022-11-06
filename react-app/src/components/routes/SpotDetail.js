@@ -32,17 +32,33 @@ function SpotDetail() {
     if (!thisSpot) return null;
     return (
         <div className='spot-detail-main'>
-            <div className='spot-container'>
-                <div className='spot-name'>Spot Name: {thisSpot.name}</div>
-                <div className='spot-description'>Description: {thisSpot.description}</div>
-                <div className='spot-lat'>Latitude: {thisSpot.lat}</div>
-                <div className='spot-lng'>Longtitude: {thisSpot.lng}</div>
-                <div className='spot-state'>State: {thisSpot.state}</div>
-                <div className='spot-level'>Level: {thisSpot.difficulty}</div>
+            <div className='spot-detail-container'>
+                <div className='spot-detail-name'>Spot Name: {thisSpot.name}</div>
+                <div className='spot-detail-by'>Created By: {thisSpot.createdBy.firstName} {thisSpot.createdBy.lastName} on {new Date(thisSpot.createAt).toLocaleString()}</div>
+                <div className='spot-detail-description'>Description: {thisSpot.description}</div>
+                <div className='spot-lat-lng'>
+
+                </div>
+                <div className='spot-state-level'>
+                    <div className='spot-detail-state'>
+                        <div>Latitude</div>
+                        <div>{thisSpot.lat}</div> </div>
+                    <div className='spot-detail-state'>
+                        <div>Longtitude</div>
+                        <div>{thisSpot.lng}</div> </div>
+                    <div className='spot-detail-state'>
+                        <div>State</div>
+                        <div>{thisSpot.state}</div>
+                    </div>
+                    <div className='spot-detail-state'>
+                        <div>Level</div>
+                        <div>{thisSpot.difficulty}</div>
+                    </div>
+                </div>
                 <div className='spot-img-container'> <img className='spot-img' src={thisSpot.staticUrl}></img></div>
-                <div className='button-container'>
+                <div className='button-detail-container'>
                     {!isOwner &&
-                        <p className='notice'>You are not an creator of this spot</p>}
+                        <p className='notice-detail'>You are not an creator of this spot</p>}
                     {isOwner &&
                         <button className='spot-log-button' onClick={() => handleDelete(spotId)}>Delete Spot</button>}
                     {isOwner &&
