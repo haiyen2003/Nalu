@@ -33,7 +33,7 @@ function SpotDetail() {
     return (
         <div className='spot-detail-main'>
             <div className='spot-detail-container'>
-                <div className='spot-detail-name'>Spot Name: {thisSpot.name}</div>
+                <div className='spot-detail-name'>{thisSpot.name}</div>
                 <div className='spot-detail-by'>Created By: {thisSpot.createdBy.firstName} {thisSpot.createdBy.lastName} on {new Date(thisSpot.createAt).toLocaleString()}</div>
                 <div className='spot-detail-description'>Description: {thisSpot.description}</div>
                 <div className='spot-lat-lng'>
@@ -65,14 +65,17 @@ function SpotDetail() {
                         <button className='spot-log-button' onClick={() => routeChange()}>Edit Spot</button>}
                 </div>
             </div>
-            <div className='spot-level'>THIS IS SESSIONS: {thisSpot.sessions.map((session) => {
+            <div className='spot-level'>
+            <div>This spot activities</div>
+            {thisSpot.sessions.map((session) => {
                 return (
                     <>
-                        <div className='list-one-container'>
+                        <div className='list-one-container-extra'>
+                            <div className='left-container'>
                             <div className='left-container'>
                                 <div className='user-info'>
                                     <div className='user-name'>{session.createdBy.firstName} {session.createdBy.lastName}</div>
-                                    <div className='user-name'>{session.createAt}</div>
+                                    <div className='user-name'>{new Date(session.createAt).toLocaleString()}</div>
                                 </div>
                             </div>
                             <div className='spotlist-name _input'> {session.name}</div>
@@ -80,6 +83,7 @@ function SpotDetail() {
                             <div className='spotlist-level _input'>Equipment: {session.equipment}</div>
                             <div className='spotlist-level _input'>Start Time: {session.startTime}</div>
                             <div className='spotlist-level _input'>End Time: {session.endTime}</div>
+                            </div>
                             <div className='spotlist-img-container'>
                                 <img className='session-img' src={session.image}></img>
                             </div>
