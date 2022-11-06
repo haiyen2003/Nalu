@@ -1,5 +1,5 @@
 import React from "react";
-import { useHistory, useParams } from "react-router-dom";
+import { NavLink, useHistory, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { thunkGetOneSpot, thunkDeleteSpot } from '../../store/spot';
@@ -12,8 +12,6 @@ function SpotDetail() {
     const user = useSelector((state) => state.session.user);
     const thisSpot = useSelector((state) => state.spot[spotId])
     const isOwner = user?.id === thisSpot?.userId;
-    const sessions = useSelector((state) => state.spot.sessions)
-    console.log(sessions, 'this is sessions ========')
 
 
     useEffect(() => {
@@ -66,7 +64,7 @@ function SpotDetail() {
                 </div>
             </div>
             <div className='spot-level'>
-            <div>This spot activities</div>
+            <div className='activites'>This spot activities</div>
             {thisSpot.sessions.map((session) => {
                 return (
                     <>
@@ -78,7 +76,7 @@ function SpotDetail() {
                                     <div className='user-name'>{new Date(session.createAt).toLocaleString()}</div>
                                 </div>
                             </div>
-                            <div className='spotlist-name _input'> {session.name}</div>
+                            <div className='spotlist-name _input'><NavLink className='link' to={`/sessions/${session.id}`}>{session.name}</NavLink> </div>
                             <div className='spotlist-description _input'>Description: {session.description}</div>
                             <div className='spotlist-level _input'>Equipment: {session.equipment}</div>
                             <div className='spotlist-level _input'>Start Time: {session.startTime}</div>

@@ -158,3 +158,16 @@
     flex-direction: column;
     padding-top: 50px;
 }
+.activites {
+    font-size: 25px;
+    font-weight: bold;
+    color: grey;
+}
+
+.link{
+    text-decoration: none;
+    color: black
+}
+.link:hover{
+    color:#054f7a
+}
