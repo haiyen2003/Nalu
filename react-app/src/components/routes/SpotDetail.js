@@ -55,8 +55,8 @@ function SpotDetail() {
                 </div>
                 <div className='spot-img-container'> <img className='spot-img' src={thisSpot.staticUrl}></img></div>
                 <div className='button-detail-container'>
-                    {!isOwner &&
-                        <p className='notice-detail'>You are not an creator of this spot</p>}
+                    {/* {!isOwner &&
+                        <p className='notice-detail'>You are not an creator of this spot</p>} */}
                     {isOwner &&
                         <button className='spot-log-button' onClick={() => handleDelete(spotId)}>Delete Spot</button>}
                     {isOwner &&
@@ -64,7 +64,7 @@ function SpotDetail() {
                 </div>
             </div>
             <div className='spot-level'>
-            <div className='activites'>This spot activities</div>
+            <div className='activites'>There are {thisSpot.sessions.length} activities here</div>
             {thisSpot.sessions.map((session) => {
                 return (
                     <>

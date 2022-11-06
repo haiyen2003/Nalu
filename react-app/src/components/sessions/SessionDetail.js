@@ -12,7 +12,7 @@ function SessionDetail() {
     const user = useSelector((state) => state.session.user);
     const thisSession = useSelector((state) => state.sessions[sessionId])
     const isOwner = user?.id === thisSession?.userId;
-  
+
 
     useEffect(() => {
         dispatch(thunkGetOneSession(sessionId))
@@ -33,8 +33,9 @@ function SessionDetail() {
     if (!thisSession) return null;
 
     return (
-        <div className='session-container'>
-            <div className='sessionlist-name'>Name: {thisSession.name}</div>
+        <div className='spot-detail-main'>
+       <div className='spot-detail-container'>
+            <div className='spot-detail-name'>{thisSession.name}</div>
             <div className='sessionlist-description'>Description: {thisSession.description}</div>
             <div className='sessionlist-state'>State: {thisSession.image}</div>
             <div className='sessionlist-level'>Equipment: {thisSession.equipment}</div>
@@ -50,6 +51,7 @@ function SessionDetail() {
                 {isOwner &&
                     <button className='button' onClick={() => routeChange()}>Edit Session</button>}
             </div>
+        </div>
         </div>
     )
 }
