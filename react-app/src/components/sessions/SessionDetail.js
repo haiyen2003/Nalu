@@ -36,7 +36,7 @@ function SessionDetail() {
         <div className='spot-detail-main'>
             <div className='spot-detail-container'>
                 <div className='user-name'>{thisSession.createdBy.firstName} {thisSession.createdBy.lastName}</div>
-                <div className='user-name'>{thisSession.createAt}</div>
+                <div className='user-name'>{new Date(thisSession.createAt).toLocaleString()}</div>
                 <div className='spot-detail-name'>{thisSession.name}</div>
                 <div className='spot-detail-description'>Description: {thisSession.description}</div>
                 <div className='sessionlist-level'>Equipment: {thisSession.equipment}</div>

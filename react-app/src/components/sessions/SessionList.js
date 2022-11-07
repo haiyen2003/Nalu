@@ -35,7 +35,7 @@ const SessionList = () => {
                             <div className='left-container'>
                                 <div className='user-info'>
                                     <div className='user-name'>{session.createdBy.firstName} {session.createdBy.lastName}</div>
-                                    <div className='user-name'>{session.createAt}</div>
+                                    <div className='user-name'>{new Date(session.createAt).toLocaleString()}</div>
                                 </div>
                             </div>
                             <div className='spotlist-name _input'><NavLink className='link' to={`/sessions/${session.id}`}>{session.name}</NavLink> </div>

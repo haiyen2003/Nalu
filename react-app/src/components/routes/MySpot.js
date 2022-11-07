@@ -38,7 +38,7 @@ export default function MySpots() {
                 return (
                     <div className='list-one-container'>
                         <div className='user-name'>Created by: {spot.createdBy.firstName} {spot.createdBy.lastName}</div>
-                        <div className='user-name'>{spot.createAt}</div>
+                        <div className='user-name'>{new Date(spot.createAt).toLocaleString()}</div>
                         <div className='spotlist-name _input'><NavLink className='link' to={`/spots/${spot.id}`}>{spot.name}</NavLink> </div>
                         <div className='spotlist-description _input'>Description: {spot.description}</div>
                         <div className='spot-state-level'>
