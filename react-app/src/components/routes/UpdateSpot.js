@@ -201,6 +201,7 @@ export default function UpdateSpot() {
                             <button
                                 className="edit-group-button"
                                 type="submit"
+                                disabled={validations.length > 0}
                             >
                                 Update Spot
                             </button>
