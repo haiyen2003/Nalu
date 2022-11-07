@@ -37,6 +37,7 @@ function CreateSession() {
         if (!equipment) errors.push('Please enter boards/equipment info')
         if (!startTime) errors.push('Please insert start time')
         if (!endTime) errors.push('Please insert end time')
+        if(startTime > endTime) errors.push('startTime and endTime conflicts')
         setValidations(errors)
     }, [name, description, image, equipment, startTime, endTime])
 
@@ -110,28 +111,31 @@ function CreateSession() {
                             value={equipment}
                             className='input-box'
                             onChange={(e) => setEquipment(e.target.value)}
+                            required
                         ></input>
                     </div>
 
                      <div className='field'>
                         <label className='label'>Start Time </label>
                         <input
-                            type='urltime-local'
+                            type='datetime-local'
                             name='startTime'
                             value={startTime}
                             className='input-box'
                             onChange={(e) => setStartTime(e.target.value)}
+                            required
                         ></input>
                     </div>
 
                     <div className='field'>
                         <label className='label'>End Time </label>
                         <input
-                            type='urltime-local'
+                            type='datetime-local'
                             name='endTime'
                             value={endTime}
                             className='input-box'
                             onChange={(e) => setEndTime(e.target.value)}
+                            required
                         ></input>
                     </div>
 

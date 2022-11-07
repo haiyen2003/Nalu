@@ -30,3 +30,4 @@ class SessionForm(FlaskForm):
     startTime = StringField('Start Time', validators=[DataRequired()])
     endTime = StringField ('End Time', validators=[DataRequired()])
     equipment =  StringField('Equipment', validators= [DataRequired()])
+  
