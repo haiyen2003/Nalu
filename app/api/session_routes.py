@@ -9,7 +9,7 @@ session_routes = Blueprint('sessions', __name__)
 now = datetime.now()
 
 # get all sessions:
-@session_routes.route('/')
+@session_routes.route('')
 def sessions():
     sessions = Session.query.all()
     if sessions and len(sessions) > 0:

@@ -16,7 +16,7 @@ def load_map_key():
     key = os.environ.get('NEXT_PUBLIC_GOOGLE_MAPS_API_KEY')
     return {'GoogleMapApiKey': key}
 
-@spot_routes.route('/')
+@spot_routes.route('')
 def spots():
     spots = Spot.query.join(User).all()
     if spots and len(spots) > 0:
@@ -39,7 +39,7 @@ def my_spots():
 @spot_routes.route('/<int:id>')
 def spot(id):
     spot = Spot.query.get(id)
-    
+
     if spot is None:
         return {'message': 'Spot not found'}
 
