@@ -109,6 +109,7 @@ export default function EditSession() {
                             value={equipment}
                             className='input-box'
                             onChange={(e) => setEquipment(e.target.value)}
+                            required
                         ></input>
                     </div>
 
@@ -120,6 +121,7 @@ export default function EditSession() {
                             value={startTime}
                             className='input-box'
                             onChange={(e) => setStartTime(e.target.value)}
+                            required
                         ></input>
                     </div>
 
@@ -131,6 +133,7 @@ export default function EditSession() {
                             value={endTime}
                             className='input-box'
                             onChange={(e) => setEndTime(e.target.value)}
+                            required
                         ></input>
                     </div>
 
