@@ -79,8 +79,8 @@ function SpotDetail() {
                             <div className='spotlist-name _input'><NavLink className='link' to={`/sessions/${session.id}`}>{session.name}</NavLink> </div>
                             <div className='spotlist-description _input'>Description: {session.description}</div>
                             <div className='spotlist-level _input'>Equipment: {session.equipment}</div>
-                            <div className='spotlist-level _input'>Start Time: {session.startTime}</div>
-                            <div className='spotlist-level _input'>End Time: {session.endTime}</div>
+                            <div className='spotlist-level _input'>Start Time: {new Date(session.startTime).toLocaleString()}</div>
+                            <div className='spotlist-level _input'>End Time: {new Date(session.endTime).toLocaleString()}</div>
                             </div>
                             <div className='spotlist-img-container'>
                                 <img className='session-img' src={session.image}></img>

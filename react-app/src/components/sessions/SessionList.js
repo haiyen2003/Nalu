@@ -38,8 +38,8 @@ const SessionList = () => {
                             <div className='spotlist-name _input'> {session.name}</div>
                             <div className='spotlist-description _input'>Description: {session.description}</div>
                             <div className='spotlist-level _input'>Equipment: {session.equipment}</div>
-                            <div className='spotlist-level _input'>Start Time: {session.startTime}</div>
-                            <div className='spotlist-level _input'>End Time: {session.endTime}</div>
+                            <div className='spotlist-level _input'>Start Time: {new Date(session.startTime).toLocaleString()}</div>
+                            <div className='spotlist-level _input'>End Time: {new Date(session.endTime).toLocaleString()}</div>
                             <div className = 'spotlist-img-container'><img className = 'spot-img' src ={session.spot.staticUrl}></img></div>
                             <div className='spotlist-img-container'>
                             <img className='session-img' src={session.image}></img>

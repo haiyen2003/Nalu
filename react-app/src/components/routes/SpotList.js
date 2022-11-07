@@ -1,5 +1,5 @@
 import React from "react";
-import { useHistory, useParams } from "react-router-dom";
+import { useHistory, useParams, NavLink } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { thunkGetAllSpots, thunkDeleteSpot } from '../../store/spot';
@@ -25,7 +25,7 @@ const SpotList = () => {
                 {spots.map((spot) => {
                     return (
                         <div className='list-one-container'>
-                            <div className='spotlist-name _input'>{spot.name}</div>
+                            <div className='spotlist-name _input'><NavLink className='link' to={`/spots/${spot.id}`}>{spot.name}</NavLink> </div>
                             <div className='spotlist-description _input'>Description: {spot.description}</div>
                             <div className='spotlist-state _input'>State: {spot.state}</div>
                             <div className='spotlist-level _input'>Level: {spot.difficulty}</div>

@@ -38,8 +38,8 @@ function SessionDetail() {
             <div className='spot-detail-name'>{thisSession.name}</div>
             <div className='sessionlist-description'>Description: {thisSession.description}</div>
             <div className='sessionlist-level'>Equipment: {thisSession.equipment}</div>
-            <div className='sessionlist-level'>Start Time: {thisSession.startTime}</div>
-            <div className='sessionlist-level'>End Time: {thisSession.endTime}</div>
+            <div className='sessionlist-level'>Start Time: {new Date(thisSession.startTime).toLocaleString()}</div>
+            <div className='sessionlist-level'>End Time: {new Date(thisSession.endTime).toLocaleString()}</div>
             <div className='sessionlist-img-container'> <img className='session-img' src={thisSession.image}></img></div>
 
             <div className='button-detail-container'>
