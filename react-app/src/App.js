@@ -21,6 +21,7 @@ import EditSession from './components/sessions/EditSession';
 import MySpots from './components/routes/MySpot';
 import MySessions from './components/sessions/MySession';
 
+
 function App() {
   const [loaded, setLoaded] = useState(false);
   const [isLoaded, setIsLoaded] = useState(false);
@@ -92,6 +93,7 @@ function App() {
             <HomePage />
           </Route>
         </Switch>
+
       )}
 
     </BrowserRouter>

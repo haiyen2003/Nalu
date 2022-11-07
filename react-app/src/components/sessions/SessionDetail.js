@@ -36,7 +36,7 @@ function SessionDetail() {
         <div className='spot-detail-main'>
        <div className='spot-detail-container'>
             <div className='spot-detail-name'>{thisSession.name}</div>
-            <div className='sessionlist-description'>Description: {thisSession.description}</div>
+            <div className='spot-detail-description'>Description: {thisSession.description}</div>
             <div className='sessionlist-level'>Equipment: {thisSession.equipment}</div>
             <div className='sessionlist-level'>Start Time: {new Date(thisSession.startTime).toLocaleString()}</div>
             <div className='sessionlist-level'>End Time: {new Date(thisSession.endTime).toLocaleString()}</div>

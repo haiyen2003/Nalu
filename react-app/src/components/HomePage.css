@@ -63,3 +63,24 @@
 .home-explore{
     margin-top: 40px
 }
+
+.about{
+    color: grey;
+    font-size: 20px;
+}
+
+.logo-container{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+.about-link-container{
+    margin-top: 350px;
+}
+
+.by{
+    font-size: 20px;
+    color: black;
+    font-weight: 600px;
+}

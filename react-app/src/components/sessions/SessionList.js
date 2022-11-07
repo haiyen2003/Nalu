@@ -35,7 +35,7 @@ const SessionList = () => {
                                 </div>
                             </div>
                             <div className='spotlist-name _input'><NavLink className='link' to={`/sessions/${session.id}`}>{session.name}</NavLink> </div>
-                            <div className='spotlist-description _input'>Description: {session.description}</div>
+                            <div className='spot-detail-description'>Description: {session.description}</div>
                             <div className='spotlist-level _input'>Equipment: {session.equipment}</div>
                             <div className='spotlist-level _input'>Start Time: {new Date(session.startTime).toLocaleString()}</div>
                             <div className='spotlist-level _input'>End Time: {new Date(session.endTime).toLocaleString()}</div>

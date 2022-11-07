@@ -40,7 +40,7 @@ export default function MySpots() {
                             <div className='spotlist-img-container'> <img className='spot-img' src={spot.staticUrl}></img></div>
                             <div className = 'spot-buttons'>
                             <button className = 'spot-log-button' onClick={ () => {history.push(`/spots/${spot.id}/sessions/new`)}}>Log Session Here</button>
-                            <button className = 'spot-log-button' onClick={ () => {history.push(`/spots/${spot.id}`)}}>Spot Detail</button>
+                            <button className = 'spot-log-button' onClick={ () => {history.push(`/spots/${spot.id}/edit`)}}>Edit Spot</button>
                             <button className = 'spot-log-button' onClick={ () => {handleDelete(spot.id)}}>Delete Session</button>
                             </div>
                         </div>
