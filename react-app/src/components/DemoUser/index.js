@@ -10,7 +10,6 @@ export default function LoginDemoUser() {
     const handleSubmit = (e) => {
         e.preventDefault();
         dispatch(sessionActions.login('demo@aa.io','password'))
-        history.push('/spots')
     }
     return (
         <form onSubmit={handleSubmit}>
