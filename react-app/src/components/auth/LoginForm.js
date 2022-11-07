@@ -48,12 +48,13 @@ const LoginForm = ({ onClose }) => {
         <div className='Login-title'>Log in</div>
         <div className='Signup-title'>Not a member? <Link className='signup-link' onClick={navigateToSignUpForm}>Sign up</Link> </div>
       </div>
-      <form className='login-field' onSubmit={onLogin}>
-        <div>
+      <div>
           {errors.map((error, ind) => (
             <div key={ind}>{error}</div>
           ))}
         </div>
+      <form className='login-field' onSubmit={onLogin}>
+
         <div>
           <label className='label-login-form' htmlFor='email'>Email</label>
           <input className='input-box-form'
