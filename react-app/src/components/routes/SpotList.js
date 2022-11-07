@@ -22,21 +22,35 @@ const SpotList = () => {
     return (
         <div className='spot-page-container'>
             <div className='list-container'>
-            <div className='top-container'>
+                <div className='top-container'>
                     <NavLink className="top-link top-link-underlined" to={`/spots`}>All Spots</NavLink>
                     <NavLink className='top-link' to={`/sessions`}>All Sessions</NavLink>
                 </div>
                 {spots.map((spot) => {
                     return (
                         <div className='list-one-container'>
+                            <div className='user-name'>Created by: {spot.createdBy.firstName} {spot.createdBy.lastName}</div>
+                            <div className='user-name'>{spot.createAt}</div>
                             <div className='spotlist-name _input'><NavLink className='link' to={`/spots/${spot.id}`}>{spot.name}</NavLink> </div>
                             <div className='spotlist-description _input'>Description: {spot.description}</div>
-                            <div className='spotlist-state _input'>State: {spot.state}</div>
-                            <div className='spotlist-level _input'>Level: {spot.difficulty}</div>
+                            <div className='spot-state-level'>
+                                <div className='spot-detail-state'>
+                                    <div>State</div>
+                                    <div>{spot.state}</div>
+                                </div>
+                                <div className='spot-detail-state'>
+                                    <div>Level</div>
+                                    <div>{spot.difficulty}</div>
+                                </div>
+                                <div className='spot-detail-state'>
+                                    <div>Total Sessions</div>
+                                    <div>{spot.sessions.length}</div>
+                                </div>
+                            </div>
                             <div className='spotlist-img-container'> <img className='spot-img' src={spot.staticUrl}></img></div>
-                            <div className = 'spot-buttons'>
-                            <button className = 'spot-log-button' onClick={ () => {history.push(`/spots/${spot.id}/sessions/new`)}}>Log Session Here</button>
-                            <button className = 'spot-log-button' onClick={ () => {history.push(`/spots/${spot.id}`)}}>Spot Detail</button>
+                            <div className='spot-buttons'>
+                                <button className='spot-log-button' onClick={() => { history.push(`/spots/${spot.id}/sessions/new`) }}>Log Session Here</button>
+                                <button className='spot-log-button' onClick={() => { history.push(`/spots/${spot.id}`) }}>Spot Detail</button>
                             </div>
                         </div>
                     )

@@ -30,6 +30,10 @@ export default function MySessions() {
     return (
         <div className='spot-page-container'>
         <div className='list-container'>
+        <div className='top-container'>
+                <NavLink className="top-link " to={`/my-spots`}>My Spots</NavLink>
+                <NavLink className='top-link top-link-underlined' to={`/my-sessions`}>My Sessions</NavLink>
+            </div>
             {sessions.map((session) => {
                 return (
                     <div className='list-one-container'>
