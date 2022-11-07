@@ -1,5 +1,5 @@
 import React from "react";
-import { useHistory, useParams } from "react-router-dom";
+import { NavLink, useHistory, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { thunkGetOneSession, thunkDeleteSession } from '../../store/workout';
@@ -34,23 +34,27 @@ function SessionDetail() {
 
     return (
         <div className='spot-detail-main'>
-       <div className='spot-detail-container'>
-            <div className='spot-detail-name'>{thisSession.name}</div>
-            <div className='spot-detail-description'>Description: {thisSession.description}</div>
-            <div className='sessionlist-level'>Equipment: {thisSession.equipment}</div>
-            <div className='sessionlist-level'>Start Time: {new Date(thisSession.startTime).toLocaleString()}</div>
-            <div className='sessionlist-level'>End Time: {new Date(thisSession.endTime).toLocaleString()}</div>
-            <div className='sessionlist-img-container'> <img className='session-img' src={thisSession.image}></img></div>
+            <div className='spot-detail-container'>
+                <div className='user-name'>{thisSession.createdBy.firstName} {thisSession.createdBy.lastName}</div>
+                <div className='user-name'>{thisSession.createAt}</div>
+                <div className='spot-detail-name'>{thisSession.name}</div>
+                <div className='spot-detail-description'>Description: {thisSession.description}</div>
+                <div className='sessionlist-level'>Equipment: {thisSession.equipment}</div>
+                <div className='sessionlist-level'>Start Time: {new Date(thisSession.startTime).toLocaleString()}</div>
+                <div className='sessionlist-level'>End Time: {new Date(thisSession.endTime).toLocaleString()}</div>
+                <div className='sessionlist-img-container'> <img className='session-img' src={thisSession.image}></img></div>
 
-            <div className='button-detail-container'>
-                {/* {!isOwner &&
+                <div className='sessionlist-img-container'> <img className='session-img' src={thisSession.spot.staticUrl}></img></div>
+                <div className='spot-detail-description'>This session was at <NavLink className = 'link' to={`/spots/${thisSession.spot.id}`}>{thisSession.spot.name}</NavLink></div>
+                <div className='button-detail-container'>
+                    {/* {!isOwner &&
                     <p className='notice'>You are not an creator of this session</p>} */}
-                {isOwner &&
-                    <button className='spot-log-button' onClick={() => handleDelete(sessionId)}>Delete Session</button>}
-                {isOwner &&
-                    <button className='spot-log-button' onClick={() => routeChange()}>Edit Session</button>}
+                    {isOwner &&
+                        <button className='spot-log-button' onClick={() => handleDelete(sessionId)}>Delete Session</button>}
+                    {isOwner &&
+                        <button className='spot-log-button' onClick={() => routeChange()}>Edit Session</button>}
+                </div>
             </div>
-        </div>
         </div>
     )
 }
