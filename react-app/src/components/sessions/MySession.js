@@ -23,7 +23,7 @@ export default function MySessions() {
 
     const handleDelete = async sessionId => {
         const deletedSession = await dispatch(thunkDeleteSession(sessionId));
-        history.push(`/sessions`)
+        history.push(`/my-sessions`)
     }
 
     if (!data) return null;

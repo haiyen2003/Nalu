@@ -1,7 +1,7 @@
 import { useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { NavLink, useHistory } from "react-router-dom"
-import { thunkGetMySpot } from "../../store/spot"
+import { thunkGetMySpot, thunkDeleteSpot } from "../../store/spot"
 import './spot.css'
 
 export default function MySpots() {
@@ -21,6 +21,11 @@ export default function MySpots() {
         dispatch(thunkGetMySpot())
     }, [dispatch])
 
+    const handleDelete = async spotId => {
+        const deletedSession = await dispatch(thunkDeleteSpot(spotId));
+        history.push(`/my-spots`)
+    }
+
     if (!data) return null;
     return (
         <div className='spot-page-container'>
@@ -36,6 +41,7 @@ export default function MySpots() {
                             <div className = 'spot-buttons'>
                             <button className = 'spot-log-button' onClick={ () => {history.push(`/spots/${spot.id}/sessions/new`)}}>Log Session Here</button>
                             <button className = 'spot-log-button' onClick={ () => {history.push(`/spots/${spot.id}`)}}>Spot Detail</button>
+                            <button className = 'spot-log-button' onClick={ () => {handleDelete(spot.id)}}>Delete Session</button>
                             </div>
                         </div>
                     )

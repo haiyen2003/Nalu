@@ -11,7 +11,6 @@ const SessionList = () => {
     const data = useSelector((state) => state.sessions)
     const history = useHistory();
     const user = useSelector(state => state.session.user)
-    console.log(data, 'THIS IS DATA =====')
     let sessions;
 
     if (data) {
