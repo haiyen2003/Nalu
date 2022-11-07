@@ -59,7 +59,7 @@ export default function MySpots() {
                             <div className = 'spot-buttons'>
                             <button className = 'spot-log-button' onClick={ () => {history.push(`/spots/${spot.id}/sessions/new`)}}>Log Session Here</button>
                             <button className = 'spot-log-button' onClick={ () => {history.push(`/spots/${spot.id}/edit`)}}>Edit Spot</button>
-                            <button className = 'spot-log-button' onClick={ () => {handleDelete(spot.id)}}>Delete Session</button>
+                            <button className = 'spot-log-button' onClick={ () => {handleDelete(spot.id)}}>Delete Spot</button>
                             </div>
                         </div>
                     )
