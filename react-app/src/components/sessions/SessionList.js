@@ -1,5 +1,5 @@
 import React from "react";
-import { useHistory, useParams } from "react-router-dom";
+import { useHistory, useParams, NavLink } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { thunkGetAllSessions } from '../../store/workout';
@@ -35,7 +35,7 @@ const SessionList = () => {
                                     <div className ='user-name'>{session.createAt}</div>
                                 </div>
                             </div>
-                            <div className='spotlist-name _input'> {session.name}</div>
+                            <div className='spotlist-name _input'><NavLink className='link' to={`/sessions/${session.id}`}>{session.name}</NavLink> </div>
                             <div className='spotlist-description _input'>Description: {session.description}</div>
                             <div className='spotlist-level _input'>Equipment: {session.equipment}</div>
                             <div className='spotlist-level _input'>Start Time: {new Date(session.startTime).toLocaleString()}</div>
