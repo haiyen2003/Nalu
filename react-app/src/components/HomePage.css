@@ -84,3 +84,20 @@
     color: black;
     font-weight: 600px;
 }
+.top-container {
+    display: flex;
+    flex-direction: row;
+    padding: 20px 0px 20px 0px;
+}
+.top-link {
+    padding: 5px 5px 5px 5px;
+    font-size: 20px;
+    color: grey;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.top-link-underlined {
+    color: #008294;
+    background-color: lightgrey;
+}

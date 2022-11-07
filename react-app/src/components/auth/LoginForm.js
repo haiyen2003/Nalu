@@ -25,6 +25,9 @@ const LoginForm = ({ onClose }) => {
     if (data) {
       setErrors(data);
     }
+   if(user){
+    history.push('/spots')
+   }
   };
 
   const updateEmail = (e) => {
@@ -36,7 +39,7 @@ const LoginForm = ({ onClose }) => {
   };
 
   if (user) {
-    return <Redirect to='/' />;
+    return <Redirect to='/spots' />;
   }
 
   return (

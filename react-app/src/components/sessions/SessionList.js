@@ -25,13 +25,17 @@ const SessionList = () => {
     return (
         <div className='spot-page-container'>
             <div className='list-container'>
+                <div className='top-container'>
+                    <NavLink className="top-link " to={`/spots`}>All Spots</NavLink>
+                    <NavLink className='top-link top-link-underlined' to={`/sessions`}>All Sessions</NavLink>
+                </div>
                 {sessions.map((session) => {
                     return (
                         <div className='list-one-container'>
-                            <div className ='left-container'>
+                            <div className='left-container'>
                                 <div className='user-info'>
-                                    <div className ='user-name'>{session.createdBy.firstName} {session.createdBy.lastName}</div>
-                                    <div className ='user-name'>{session.createAt}</div>
+                                    <div className='user-name'>{session.createdBy.firstName} {session.createdBy.lastName}</div>
+                                    <div className='user-name'>{session.createAt}</div>
                                 </div>
                             </div>
                             <div className='spotlist-name _input'><NavLink className='link' to={`/sessions/${session.id}`}>{session.name}</NavLink> </div>
@@ -39,15 +43,15 @@ const SessionList = () => {
                             <div className='spotlist-level _input'>Equipment: {session.equipment}</div>
                             <div className='spotlist-level _input'>Start Time: {new Date(session.startTime).toLocaleString()}</div>
                             <div className='spotlist-level _input'>End Time: {new Date(session.endTime).toLocaleString()}</div>
-                            <div className = 'spotlist-img-container'><img className = 'spot-img' src ={session.spot.staticUrl}></img></div>
+                            <div className='spotlist-img-container'><img className='spot-img' src={session.spot.staticUrl}></img></div>
                             <div className='spotlist-img-container'>
-                            <img className='session-img' src={session.image}></img>
+                                <img className='session-img' src={session.image}></img>
                             </div>
-                            <div className = 'spot-buttons'>
-                            <button className = 'spot-log-button' onClick={ () => {history.push(`/sessions/${session.id}`)}}>Session Detail</button>
-                            {user.id == session.userId &&
-                            <button className = 'spot-log-button' onClick={ () => {history.push(`/sessions/${session.id}/edit`)}}>Edit Session</button>
-                            }
+                            <div className='spot-buttons'>
+                                <button className='spot-log-button' onClick={() => { history.push(`/sessions/${session.id}`) }}>Session Detail</button>
+                                {user.id == session.userId &&
+                                    <button className='spot-log-button' onClick={() => { history.push(`/sessions/${session.id}/edit`) }}>Edit Session</button>
+                                }
                             </div>
                         </div>
                     )

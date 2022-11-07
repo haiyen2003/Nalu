@@ -22,6 +22,10 @@ const SpotList = () => {
     return (
         <div className='spot-page-container'>
             <div className='list-container'>
+            <div className='top-container'>
+                    <NavLink className="top-link top-link-underlined" to={`/spots`}>All Spots</NavLink>
+                    <NavLink className='top-link' to={`/sessions`}>All Sessions</NavLink>
+                </div>
                 {spots.map((spot) => {
                     return (
                         <div className='list-one-container'>
