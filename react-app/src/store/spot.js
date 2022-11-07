@@ -77,7 +77,7 @@ export const thunkCreateSpot = (payload) => async dispatch => {
 }
 
 export const thunkGetAllSpots = () => async dispatch => {
-    const response = await fetch("/api/spots", {
+    const response = await fetch(`/api/spots`, {
         method: "GET",
         headers: { "Content-Type": "application/json" },
     });
