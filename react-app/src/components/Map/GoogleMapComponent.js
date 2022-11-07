@@ -18,9 +18,9 @@ const GoogleMapComponent = ({ apiKey }) => {
     let [staticUrl, setStaticUrl] = useState(null)
     let [staticMap, UpdateStaticMap] = useState(null)
     const context = useContext(MapContext)
-    console.log(context, 'THIS IS CONTEXT');
+
     const mapRef = useRef()
-    console.log(mapRef, 'THIS IS MAPREF');
+
     const center = useMemo(() => ({
         lat: 37.53221987607712,
         lng: -122.39010570624356,
@@ -38,7 +38,7 @@ const GoogleMapComponent = ({ apiKey }) => {
         image += marker + '&key=' + `${apiKey}`
         staticUrl = image
         // context.setStaticUrl(e.image())
-        console.log(staticUrl, 'THIS IS STATIC URL ====')
+     
         return staticUrl
     }
     return (
