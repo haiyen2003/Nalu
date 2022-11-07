@@ -75,6 +75,7 @@ export default function CreateSpot() {
 
   let state_options = ['CA', 'HI', 'AK', 'WA', 'OR', 'TX', 'LA', 'AL', 'FL', 'GA', 'SC', 'NC', 'VA', 'MD', 'DE', 'NJ', 'MS', 'NY', 'CT', 'RI', 'MA', 'NH', 'ME']
   let level_options = ['Beginner-friendly', 'Moderate', 'Expert']
+  
   return (
     <div className='form'>
       <div className='title-div'>

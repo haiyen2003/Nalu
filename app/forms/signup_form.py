@@ -11,7 +11,6 @@ def user_exists(form, field):
     if user:
         raise ValidationError('Email address is already in use.')
 
-
 def username_exists(form, field):
     # Checking if username is already in use
     username = field.data
@@ -29,6 +28,11 @@ def password_length(form, field):
     if len(password) < 8:
         raise ValidationError("Password must be more than 8 characters")
 
+def image_validation(form, field):
+    image = field.data
+    if ('https' not in image and 'http' not in image) or ('.jpg' not in image) and ('.jpeg' not in image) and ('.gif' not in image) and ('.svg' not in image) and ('.png' not in image):
+        raise ValidationError('Please enter a valid image URL.')
+
 
 class SignUpForm(FlaskForm):
     username = StringField(
@@ -37,4 +41,4 @@ class SignUpForm(FlaskForm):
     password = StringField('password', validators=[DataRequired(), password_length])
     firstName = StringField('firstName', validators=[DataRequired()])
     lastName = StringField('lastName', validators=[DataRequired()])
-    profileImg = StringField('profileImg')
+    profileImg = StringField('profileImg', validators=[image_validation])

@@ -60,6 +60,7 @@ const LoginForm = ({ onClose }) => {
             placeholder='Email'
             value={email}
             onChange={updateEmail}
+            required
           />
         </div>
         <div>
@@ -70,6 +71,7 @@ const LoginForm = ({ onClose }) => {
             placeholder='Password'
             value={password}
             onChange={updatePassword}
+            required
           />
           <div className='login-button-container'>
           <button className='button-login-form' type='submit'>Login</button>

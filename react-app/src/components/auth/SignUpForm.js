@@ -23,10 +23,12 @@ const SignUpForm = () => {
             if (data) {
                 setErrors(data)
             }
+        } else if (password !== repeatPassword){
+            setErrors(['Password: Repeat password must match password'])
         }
     };
 
-    
+
     const updateUsername = (e) => {
         setUsername(e.target.value);
     };
@@ -122,6 +124,7 @@ const SignUpForm = () => {
                             name='password'
                             onChange={updatePassword}
                             value={password}
+                            required
                         ></input>
                     </div>
                     <div className='field'>
