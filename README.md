@@ -1,85 +1,72 @@
-# Flask React Project
+# Nalu
 
-This is the starter for the Flask React project.
+Nalu is a web-application clone inspired by [Strava](https://www.strava.com/dashboard) and [Surfline](https://www.surfline.com/). With Nalu, users can use as a surfing diary and a surf social media. Users can log their surfing sessions, see the stats, check in at the new spots and discover new surf spots on the go. Users can also find people with same level/interests and make friends, share photos and experiences with each other with Nalu.
 
-## Getting started
-1. Clone this repository (only this branch)
+* [Nalu](https://nalu-1025.herokuapp.com/)
 
-   ```bash
-   git clone https://github.com/appacademy-starters/python-project-starter.git
-   ```
+### Please see below links to Project Wiki:
+##### [Features](https://github.com/haiyen2003/Nalu/wiki/MVP-Features)
+##### [Database Schema](https://github.com/haiyen2003/Nalu/wiki/Database-Schema)
+##### [User Story](https://github.com/haiyen2003/Nalu/wiki/User-Story)
+##### [WireFrame](https://github.com/haiyen2003/Nalu/wiki/Wireframe)
 
-2. Install dependencies
+### This project is built with:
 
-      ```bash
-      pipenv install -r requirements.txt
-      ```
+![JavaScript](https://img.shields.io/badge/javascript-%23323330.svg?style=for-the-badge&logo=javascript&logoColor=%23F7DF1E)
+![Python](https://img.shields.io/badge/python-3670A0?style=for-the-badge&logo=python&logoColor=ffdd54)
+![Docker](https://img.shields.io/badge/docker-%230db7ed.svg?style=for-the-badge&logo=docker&logoColor=white)
+![Flask](https://img.shields.io/badge/flask-%23000.svg?style=for-the-badge&logo=flask&logoColor=white)
+![SQLAlchemy](https://img.shields.io/badge/-SQLAlchemy-orange?style=for-the-badge)
+![Postgres](https://img.shields.io/badge/postgres-%23316192.svg?style=for-the-badge&logo=postgresql&logoColor=white)
+![React](https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB)
+![Redux](https://img.shields.io/badge/redux-%23593d88.svg?style=for-the-badge&logo=redux&logoColor=white)
+![HTML5](https://img.shields.io/badge/html5-%23E34F26.svg?style=for-the-badge&logo=html5&logoColor=white)
+![CSS3](https://img.shields.io/badge/css3-%231572B6.svg?style=for-the-badge&logo=css3&logoColor=white)
+![Heroku](https://img.shields.io/badge/heroku-%23430098.svg?style=for-the-badge&logo=heroku&logoColor=white)
 
-3. Create a **.env** file based on the example with proper settings for your
-   development environment
-4. Make sure the SQLite3 database connection URL is in the **.env** file
+# Run Locally
+  1) Clone this repository
+  2) Backend instruction: open another terminal at the same time and run the
+     following command in order :
+     pipenv install -r requirements.txt
+     In the following order:
+     pipenv shell ; flask db upgrade ; flask seed all; flask run.
+  3) Frontend instruction: cd into react-app directory
+     and run command : npm install
+  4) Make an .env file under the root directory and copy the content of
+     .env.example to the .env file.
+     
+  5) With the second terminal, run npm start in the react-app directory.
 
-5. Get into your pipenv, migrate your database, seed your database, and run your Flask app
+# Features Direction
+  HomePage
+  ![image](https://user-images.githubusercontent.com/101358396/200322036-3b990992-97e7-4188-884c-d81f3234d487.png)
 
-   ```bash
-   pipenv shell
-   ```
+  Get all spots
+  ![image](https://user-images.githubusercontent.com/101358396/200322225-132d4873-2948-448f-9c35-d6bdf09f00e9.png)
 
-   ```bash
-   flask db upgrade
-   ```
+  See details for a specific spot
+  ![image](https://user-images.githubusercontent.com/101358396/200322456-7998b9db-2b98-4c29-b56c-a55486970bee.png)
 
-   ```bash
-   flask seed all
-   ```
+  Get all sessions
+  ![image](https://user-images.githubusercontent.com/101358396/200322586-5b8aec6a-36df-444a-bad2-22b6e12f2a7d.png)
 
-   ```bash
-   flask run
-   ```
+  Get detail of one session
+  ![image](https://user-images.githubusercontent.com/101358396/200322690-1933c654-0710-4092-ac87-d41ccc471a87.png)
 
-6. To run the React App in development, checkout the [README](./react-app/README.md) inside the `react-app` directory.
+  Create a spot
+  ![image](https://user-images.githubusercontent.com/101358396/200322870-9c311dbf-ce2b-40fc-a47d-18ca48ad534e.png)
+
+  Log a session
+ ![image](https://user-images.githubusercontent.com/101358396/200322965-0c2d8444-2642-484b-a35a-187f01370d7d.png)
 
 
-<br>
 
-## Deploy to Heroku
-This repo comes configured with Github Actions. When you push to your main branch, Github will automatically pull your code, package and push it to Heroku, and then release the new image and run db migrations.
+# Future Focus
+  1. Users can search spots/activites based on location, name and state. Or log in their GPS location to find surf spot nearby.
 
-1. Write your Dockerfile. In order for the Github action to work effectively, it must have a configured Dockerfile. Follow the comments found in this [Dockerfile](./Dockerfile) to write your own!
+  2. Users can add friends and comments on each other's locations and activities.
 
-2. Create a new project on Heroku.
+  3. Users can live chat with their friends.
 
-3. Under Resources click "Find more add-ons" and add the add on called "Heroku Postgres".
-
-4. Configure production environment variables. In your Heroku app settings -> config variables you should have two environment variables set:
-
-   |    Key          |    Value    |
-   | -------------   | ----------- |
-   | `DATABASE_URL`  | Autogenerated when adding postgres to Heroku app |
-   | `SECRET_KEY`    | Random string full of entropy |
-
-5. Generate a Heroku OAuth token for your Github Action. To do so, log in to Heroku via your command line with `heroku login`. Once you are logged in, run `heroku authorizations:create`. Copy the GUID value for the Token key.
-
-6. In your Github Actions Secrets you should have two environment variables set. You can set these variables via your Github repository settings -> secrets -> actions. Click "New respository secret" to create
-each of the following variables:
-
-   |    Key            |    Value    |
-   | -------------     | ----------- |
-   | `HEROKU_API_KEY`  | Heroku Oauth Token (from step 6)|
-   | `HEROKU_APP_NAME` | Heroku app name    |
-
-7. Push to your `main` branch! This will trigger the Github Action to build your Docker image and deploy your application to the Heroku container registry. Please note that the Github Action will automatically upgrade your production database with `flask db upgrade`. However, it will *not* automatically seed your database. You must manually seed your production database if/when you so choose (see step 8).
-
-8. *Attention!* Please run this command *only if you wish to seed your production database*: `heroku run -a HEROKU_APP_NAME flask seed all`
-
-## Helpful commands
-|    Command            |    Purpose    |
-| -------------         | ------------- |
-| `pipenv shell`        | Open your terminal in the virtual environment and be able to run flask commands without a prefix |
-| `pipenv run`          | Run a command from the context of the virtual environment without actually entering into it. You can use this as a prefix for flask commands  |
-| `flask db upgrade`    | Check in with the database and run any needed migrations  |
-| `flask db downgrade`  | Check in with the database and revert any needed migrations  |
-| `flask seed all`      | Just a helpful syntax to run queries against the db to seed data. See the **app/seeds** folder for reference and more details |
-| `heroku login -i`      | Authenticate your heroku-cli using the command line. Drop the -i to authenticate via the browser |
-| `heroku authorizations:create` | Once authenticated, use this to generate an Oauth token |
-| `heroku run -a <app name>` | Run a command from within the deployed container on Heroku |
+  4. Update features to return more stats about users.
