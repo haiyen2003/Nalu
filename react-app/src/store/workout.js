@@ -68,7 +68,7 @@ export const thunkCreateSession = (payload) => async dispatch => {
 }
 
 export const thunkGetAllSessions = () => async dispatch => {
-    const response = await fetch("/api/sessions/", {
+    const response = await fetch("/api/sessions", {
         method: "GET",
         headers: { "Content-Type": "application/json" },
     });
