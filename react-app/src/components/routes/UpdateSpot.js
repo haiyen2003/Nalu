@@ -75,7 +75,7 @@ export default function UpdateSpot() {
             difficulty,
             staticUrl
         }
-        console.log(staticUrl, 'THIS IS STATIC URL FROM PAYLOAD')
+      
         let updatedSpot = await dispatch(thunkUpdateSpot(payload))
         if (updatedSpot) {
             history.push(`/spots/${updatedSpot.id}`)

@@ -38,7 +38,7 @@ const GoogleMapComponent = ({ apiKey }) => {
         image += marker + '&key=' + `${apiKey}`
         staticUrl = image
         // context.setStaticUrl(e.image())
-     
+
         return staticUrl
     }
     return (
@@ -49,7 +49,7 @@ const GoogleMapComponent = ({ apiKey }) => {
                     zoom={10}
                     onLoad={onLoad}
                     onClick={(e) => {
-                        console.log(e.latLng.lat(), " ======== ")
+                       
                         setLat(e.latLng.lat())
                         setLng(e.latLng.lng())
 

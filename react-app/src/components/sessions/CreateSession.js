@@ -3,8 +3,7 @@ import React, { useEffect, useState, useContext } from 'react';
 import { useHistory, useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from "react-redux";
 import { thunkCreateSession } from '../../store/workout';
-import { thunkGetOneSpot } from '../../store/spot'
-
+import { thunkGetOneSpot } from '../../store/spot';
 
 function CreateSession() {
     const dispatch = useDispatch();
@@ -21,6 +20,8 @@ function CreateSession() {
     const [startTime, setStartTime] = useState('')
     const [endTime, setEndTime] = useState('')
     const [errors, setErrors] = useState([])
+
+
 
     useEffect(() => {
         const errors = [];

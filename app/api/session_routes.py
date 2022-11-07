@@ -23,7 +23,7 @@ def sessions():
 def my_sessions():
     currentUserId = current_user.id
     sessions = Session.query.filter(Session.userId == currentUserId).all()
-    print(sessions, 'THIS IS MY SESSIONS')
+ 
     if sessions and len(sessions) > 0:
         return {'mySessions': [session.to_dict() for session in sessions]}
     else:

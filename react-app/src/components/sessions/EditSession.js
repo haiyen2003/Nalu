@@ -6,7 +6,7 @@ import { thunkUpdateSession, thunkGetOneSession } from '../../store/workout';
 export default function EditSession() {
     const { sessionId } = useParams();
     const thisSession = useSelector((state) => state.sessions[sessionId])
-    console.log(thisSession, 'THIS SESSIONS =======')
+   
     const user = useSelector(state => state.session.user)
     const history = useHistory()
     const dispatch = useDispatch();

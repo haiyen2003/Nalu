@@ -66,7 +66,7 @@ export default function CreateSpot() {
       difficulty,
       staticUrl
     }
-    console.log(staticUrl, 'STATIC URL')
+   
     let createdSpot = await dispatch(thunkCreateSpot(payload))
     if (createdSpot) {
       history.push(`/spots`)

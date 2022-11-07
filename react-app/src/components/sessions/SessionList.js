@@ -15,7 +15,6 @@ const SessionList = () => {
 
     if (data) {
         sessions = Object.values(data);
-        console.log(sessions, 'THIS IS SESSIONS =====')
     }
     useEffect(() => {
         dispatch(thunkGetAllSessions())
