@@ -34,6 +34,7 @@ export default function EditSession() {
         if (!equipment) errors.push('Please enter boards/equipment info')
         if (!startTime) errors.push('Please insert start time')
         if (!endTime) errors.push('Please insert end time')
+        if(startTime > endTime) errors.push('startTime and endTime conflicts')
         setValidations(errors)
     }, [name, description, image, equipment, startTime, endTime])
 
@@ -114,7 +115,7 @@ export default function EditSession() {
                     <div className='field'>
                         <label className='label'>Start Time </label>
                         <input
-                            type='urltime-local'
+                            type='datetime-local'
                             name='startTime'
                             value={startTime}
                             className='input-box'
@@ -125,7 +126,7 @@ export default function EditSession() {
                     <div className='field'>
                         <label className='label'>End Time </label>
                         <input
-                            type='urltime-local'
+                            type='datetime-local'
                             name='endTime'
                             value={endTime}
                             className='input-box'
