@@ -1,7 +1,7 @@
 import { useMemo, useCallback, useRef } from "react"
 import { GoogleMap, useLoadScript, Marker } from '@react-google-maps/api';
 import { Wrapper, Status } from "@googlemaps/react-wrapper";
-import { useState, useContext } from "react";
+import { useState, useContext, useEffect } from "react";
 import { MapContext } from "../../context/Map";
 import { useDispatch, useSelector } from "react-redux";
 
@@ -12,13 +12,28 @@ const containerStyle = {
 }
 
 const GoogleMapComponent = ({ apiKey }) => {
-
     const [lat, setLat] = useState(null)
     const [lng, setLng] = useState(null)
     let [staticUrl, setStaticUrl] = useState(null)
     let [staticMap, UpdateStaticMap] = useState(null)
     const context = useContext(MapContext)
 
+    useEffect(() => {
+        console.log(lat, 'THIS IS LAT')
+        context.lat = lat;
+        context.lng = lng;
+        context.setStaticUrl(UpdateStaticMap())
+    }, [lat, lng])
+
+    const mapClick = (e) => {
+        setLat(e.latLng.lat())
+        setLng(e.latLng.lng())
+        setStaticUrl(UpdateStaticMap())
+        console.log(e, '===== this is E');
+        context.setLat(e.latLng.lat())
+        context.setLng(e.latLng.lng())
+        // context.setStaticUrl(UpdateStaticMap())
+    }
     const mapRef = useRef()
 
     const center = useMemo(() => ({
@@ -38,7 +53,6 @@ const GoogleMapComponent = ({ apiKey }) => {
         image += marker + '&key=' + `${apiKey}`
         staticUrl = image
         // context.setStaticUrl(e.image())
-
         return staticUrl
     }
     return (
@@ -48,17 +62,16 @@ const GoogleMapComponent = ({ apiKey }) => {
                     center={center}
                     zoom={10}
                     onLoad={onLoad}
-                    onClick={(e) => {
-                       
-                        setLat(e.latLng.lat())
-                        setLng(e.latLng.lng())
+                    onClick={mapClick
+                        // setLat(e.latLng.lat())
+                        // setLng(e.latLng.lng())
+                        // setStaticUrl(UpdateStaticMap())
+                        // console.log(lat, '===== this is lat');
+                        // // context.setLat(e.latLng.lat())
+                        // // context.setLng(e.latLng.lng())
+                        // context.setStaticUrl(UpdateStaticMap())
 
-                        setStaticUrl(UpdateStaticMap())
-
-                        context.setLat(e.latLng.lat())
-                        context.setLng(e.latLng.lng())
-                        context.setStaticUrl(UpdateStaticMap())
-                    }}
+                    }
                 // onClick = {UpdateStaticMap}
                 >
                     {checkMarker}
