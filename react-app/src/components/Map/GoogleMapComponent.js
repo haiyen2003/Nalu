@@ -19,7 +19,6 @@ const GoogleMapComponent = ({ apiKey }) => {
     const context = useContext(MapContext)
 
     useEffect(() => {
-        console.log(lat, 'THIS IS LAT')
         context.lat = lat;
         context.lng = lng;
         context.setStaticUrl(UpdateStaticMap())
@@ -29,7 +28,6 @@ const GoogleMapComponent = ({ apiKey }) => {
         setLat(e.latLng.lat())
         setLng(e.latLng.lng())
         setStaticUrl(UpdateStaticMap())
-        console.log(e, '===== this is E');
         context.setLat(e.latLng.lat())
         context.setLng(e.latLng.lng())
         // context.setStaticUrl(UpdateStaticMap())
@@ -62,16 +60,7 @@ const GoogleMapComponent = ({ apiKey }) => {
                     center={center}
                     zoom={10}
                     onLoad={onLoad}
-                    onClick={mapClick
-                        // setLat(e.latLng.lat())
-                        // setLng(e.latLng.lng())
-                        // setStaticUrl(UpdateStaticMap())
-                        // console.log(lat, '===== this is lat');
-                        // // context.setLat(e.latLng.lat())
-                        // // context.setLng(e.latLng.lng())
-                        // context.setStaticUrl(UpdateStaticMap())
-
-                    }
+                    onClick={mapClick}
                 // onClick = {UpdateStaticMap}
                 >
                     {checkMarker}
