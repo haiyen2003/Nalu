@@ -18,6 +18,7 @@ class Session(db.Model):
 
     user = db.relationship("User", back_populates = 'sessions')
     spot = db.relationship("Spot", back_populates = 'sessions')
+    comments = db.relationship("Comment", back_populates = 'session', cascade = 'all, delete')
 
     def to_dict(self):
         return{
@@ -50,5 +51,6 @@ class Session(db.Model):
                 'lng': self.spot.lng,
                 'createAt': self.spot.createAt,
                 'updateAt': self.spot.updateAt,
-            }
+            },
+            'comments': [comment.to_dict() for comment in self.comments]
         }

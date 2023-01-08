@@ -23,7 +23,7 @@ def sessions():
 def my_sessions():
     currentUserId = current_user.id
     sessions = Session.query.filter(Session.userId == currentUserId).all()
- 
+
     if sessions and len(sessions) > 0:
         return {'mySessions': [session.to_dict() for session in sessions]}
     else:
@@ -108,3 +108,6 @@ def delete_session(id):
     db.session.delete(thisSession)
     db.session.commit()
     return ("Successfully deleted!")
+
+# Get all comments at one specific session:
+

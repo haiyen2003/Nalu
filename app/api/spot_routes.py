@@ -189,3 +189,5 @@ def all_session(spotId):
         return {'sessions': [session.to_dict() for session in sessions]}
     else:
         return {'sessions': []}
+
+
