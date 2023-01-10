@@ -2,7 +2,7 @@ from datetime import datetime
 from flask import Blueprint, jsonify, request
 from flask_login import login_required, current_user
 from app.forms import SessionForm
-from app.models import Session, db, User, Spot
+from app.models import Session, db, User, Spot, Comment
 from app.api.auth_routes import validation_errors_to_error_messages
 
 session_routes = Blueprint('sessions', __name__)
@@ -110,4 +110,10 @@ def delete_session(id):
     return ("Successfully deleted!")
 
 # Get all comments at one specific session:
-
+@session_routes.route('/<int:sessionId>/comments')
+def all_comments(sessionId):
+    comments = Comment.query.filter(Comment.sessionId == sessionId).all()
+    if comments and len(comments) > 0:
+        return {'comments': [comment.to_dict() for comment in comments ]}
+    else:
+        return {'comments': []}
