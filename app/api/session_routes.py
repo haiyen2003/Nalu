@@ -29,7 +29,7 @@ def my_sessions():
     else:
         return {'mySessions': []}
 
-# get specific workout by id:
+# get specific session by id:
 @session_routes.route('/<int:id>')
 def session(id):
     session = Session.query.get(id)
@@ -108,12 +108,3 @@ def delete_session(id):
     db.session.delete(thisSession)
     db.session.commit()
     return ("Successfully deleted!")
-
-# Get all comments at one specific session:
-@session_routes.route('/<int:sessionId>/comments')
-def all_comments(sessionId):
-    comments = Comment.query.filter(Comment.sessionId == sessionId).all()
-    if comments and len(comments) > 0:
-        return {'comments': [comment.to_dict() for comment in comments ]}
-    else:
-        return {'comments': []}
