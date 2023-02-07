@@ -16,3 +16,14 @@ def all_comments(sessionId):
         return {'comments': [comment.to_dict() for comment in comments ]}
     else:
         return {'comments': []}
+
+# Get all comments based on userId:
+
+@comment_routes.route('/')
+@login_required
+def get_user_comments():
+    user_comments = Comment.query.filter(Comment.userId == current_user.id).all()
+    if user_comments and len(user_comments) > 0:
+        return {'user_comments':[comment.to_dict() for comment in user_comments] }
+    else:
+        return {'user_comments': []}
