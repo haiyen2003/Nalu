@@ -18,7 +18,6 @@ def all_comments(sessionId):
         return {'comments': []}
 
 # Get all comments based on userId:
-
 @comment_routes.route('/')
 @login_required
 def get_user_comments():
@@ -27,3 +26,53 @@ def get_user_comments():
         return {'user_comments':[comment.to_dict() for comment in user_comments] }
     else:
         return {'user_comments': []}
+
+# Delete a comment:
+@comment_routes.route('/<int:id>', methods = ['DELETE'])
+@login_required
+def delete_comment(id):
+    comment = Comment.query.get(id)
+    if comment:
+        db.session.delete(comment)
+        db.session.commit()
+        return {'message': 'Successfully Deleted'}
+    else:
+        return {'message': 'Comment can not be found'}
+
+# Create a comment:
+@comment_routes.route('/sessions/<int:id>', methods = ['POST'])
+@login_required
+def create_comment(id):
+    form = CommentForm()
+    form['csrf_token'].data = request.cookies['csrf_token']
+    if form.validate_on_submit():
+        data = form.data
+        newComment = Comment(
+            userId = current_user.id,
+            sessionId = id,
+            content = data['content'],
+            createAt = now,
+            updateAt = now
+        )
+        db.session.add(newComment)
+        db.session.commit()
+        return newComment.to_dict()
+    else:
+        return {'errors': validation_errors_to_error_messages(form.errors)}, 400
+
+# update a comment:
+@comment_routes.route('/<int:commentId>', methods=['PUT'])
+@login_required
+def update_comment(commentId):
+    form = CommentForm()
+    form['csrf_token'].data = request.cookies['csrf_token']
+    if form.validate_on_submit():
+        updatedComment = Comment.query.get(commentId)
+        if updatedComment:
+            updatedComment.content = form.data['content']
+            db.session.commit()
+            return updatedComment.to_dict()
+        else:
+            return{'message': 'Comment not found'}, 404
+    else:
+        return {'errors': validation_errors_to_error_messages(form.errors)}, 400
