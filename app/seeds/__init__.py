@@ -2,6 +2,7 @@ from flask.cli import AppGroup
 
 from app.seeds.sessions import seed_sessions, undo_sessions
 from app.seeds.spots import seed_spots, undo_spots
+from app.seeds.comments import seed_comments, undo_comments
 from .users import seed_users, undo_users
 
 # Creates a seed group to hold our commands
@@ -15,6 +16,7 @@ def seed():
     seed_users()
     seed_spots()
     seed_sessions()
+    seed_comments()
     # Add other seed functions here
 
 
@@ -24,4 +26,5 @@ def undo():
     undo_users()
     undo_spots()
     undo_sessions()
+    undo_comments()
     # Add other undo functions here
