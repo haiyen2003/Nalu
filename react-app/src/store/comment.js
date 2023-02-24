@@ -102,3 +102,15 @@ export const thunkDeleteComment = (id) => async dispatch => {
         dispatch(actionDeleteComment(id))
     }
 }
+const initialState = {}
+
+const commentReducer = (state = initialState, action) => {
+    let newState = {...state}
+    switch (action.type) {
+        case CREATE_COMMENT:
+            newState[action.comment.id] = action.comment
+            return newState
+        case GET_ALL_COMMENT:
+            newState = {}
+    }
+}
