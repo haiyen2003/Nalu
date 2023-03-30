@@ -1,4 +1,3 @@
-import { response } from "express/lib/express";
 
 const GET_ALL_COMMENT = 'comment/GET_ALL_COMMENT';
 const CREATE_COMMENT = 'comment/CREATE_COMMENT';
@@ -102,15 +101,34 @@ export const thunkDeleteComment = (id) => async dispatch => {
         dispatch(actionDeleteComment(id))
     }
 }
-const initialState = {}
 
+const initialState = {}
 const commentReducer = (state = initialState, action) => {
-    let newState = {...state}
+    let newState = { ...state }
     switch (action.type) {
+
         case CREATE_COMMENT:
+            newState[action.comment.id] = action.comment;
+            return newState;
+
+        case GET_ALL_COMMENT:
+            newState = {};
+            action.comments.comments.forEach((comment) => {
+                newState[comment.id] = comment;
+            });
+            return newState;
+
+        case UPDATE_COMMENT:
+            newState = {};
             newState[action.comment.id] = action.comment
             return newState
-        case GET_ALL_COMMENT:
-            newState = {}
+
+        case DELETE_COMMENT:
+            delete newState[action.id]
+            return newState
+        default:
+            return state;
     }
 }
+
+export default commentReducer
